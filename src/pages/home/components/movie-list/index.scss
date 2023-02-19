@@ -1,0 +1,33 @@
+div {
+  div.title {
+    display: block;
+    padding: 12px;
+    position: relative;
+    text-align: center;
+    &::before {
+      content: "";
+      position: absolute;
+      width: 30%;
+      height: 1px;
+
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #fff;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: 30%;
+      height: 1px;
+      background-color: #fff;
+
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    h3 {
+      color: #fff;
+    }
+  }
+}
