@@ -16,7 +16,6 @@ export default function MovieList() {
   }
 
   const renderMovieList = () => {
-    console.log(movieList);
     return movieList.map((ele) => {
       return (
         <div

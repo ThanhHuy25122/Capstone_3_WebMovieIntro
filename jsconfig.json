@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "layouts/*": ["./src/layouts/*"],
+      "pages/*": ["./src/pages/*"]
+    }
+  },
+  "include": ["src"]
+}

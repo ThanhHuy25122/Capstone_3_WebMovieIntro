@@ -1,3 +1,4 @@
+import { MaLoaiNguoiDung } from "enums";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -43,6 +44,20 @@ export default function Header() {
             {userState.userInfo ? (
               <>
                 <span className="mr-3">Hello {userState.userInfo.hoTen}</span>
+                {userState.userInfo.maLoaiNguoiDung !==
+                MaLoaiNguoiDung.QuanTri ? (
+                  <></>
+                ) : (
+                  <>
+                    <button
+                      className="btn btn-outline-info my-2 my-sm-0 mr-2"
+                      onClick={() => navigate("/admin")}
+                    >
+                      Admin
+                    </button>
+                  </>
+                )}
+
                 <button className="btn btn-danger" onClick={handleLogout}>
                   Logout
                 </button>

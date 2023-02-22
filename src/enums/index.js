@@ -9,3 +9,9 @@ export const LoaiGhe = {
   Vip: "Vip",
   Thuong: "Thuong",
 };
+
+export const AdminLayoutItem = {
+  admin: "/admin/",
+  movieManagement: ["movie-management", "Movie Management"],
+  userManagament: ["user-management", "User Managament"],
+};
