@@ -23,13 +23,11 @@ export default function Login() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     const result = await loginApi(state);
 
     localStorage.setItem("USER_INFO_KEY", JSON.stringify(result.data.content));
     dispatch(setUserInfoAction(result.data.content));
     navigate("/");
-    console.log(result.data.content);
   };
 
   return (

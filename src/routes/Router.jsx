@@ -1,3 +1,6 @@
+import { AdminLayoutItem } from "enums";
+import ShowtimeManagement from "pages/showtime-management/ShowtimeManagement";
+import UserManagement from "pages/user-management/UserManagement";
 import React from "react";
 import { useRoutes } from "react-router-dom";
 import AdminGuard from "../guards/AdminGuard";
@@ -9,6 +12,7 @@ import Booking from "../pages/booking/Booking";
 import HomePage from "../pages/home/HomePage";
 import Login from "../pages/login/Login";
 import MovieDetail from "../pages/movie-detail/MovieDetail";
+import MovieForm from "../pages/movie-form/MovieForm";
 import MovieManagement from "../pages/movie-management/MovieManagement";
 import Register from "../pages/register/Register";
 
@@ -44,11 +48,11 @@ export default function Router() {
               path: "/login",
               element: <Login />,
             },
+            {
+              path: "/register",
+              element: <Register />,
+            },
           ],
-        },
-        {
-          path: "/register",
-          element: <Register />,
         },
       ],
     },
@@ -63,6 +67,25 @@ export default function Router() {
             {
               path: "/admin/movie-management",
               element: <MovieManagement />,
+              children: [
+                {
+                  path: "/admin/movie-management/add",
+                  element: <MovieForm />,
+                },
+                {
+                  path: "/admin/movie-management/edit/:movieId",
+                  element: <MovieForm />,
+                },
+                {
+                  path: "/admin/movie-management/showtime-management/:movieId",
+                  element: <ShowtimeManagement />,
+                },
+              ],
+            },
+
+            {
+              path: "/admin/user-management",
+              element: <UserManagement />,
             },
           ],
         },

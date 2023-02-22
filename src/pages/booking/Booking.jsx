@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { bookTicketApi, fetchTicketDetailApi } from "../../services/ticket";
 import Seat from "./components/seat/Seat";
+import * as _ from "lodash";
 
 export default function Booking() {
   const [ticketDetail, setTicketDetail] = useState({});
@@ -110,7 +111,8 @@ export default function Booking() {
               })}
             </div>
           </h5>
-          <h5>Total: {40000}</h5>
+          <h5>Total: {_.sumBy(selectedSeatList, "giaVe").toLocaleString()}</h5>
+
           <button onClick={bookTicket} className="btn btn-warning">
             BOOK
           </button>

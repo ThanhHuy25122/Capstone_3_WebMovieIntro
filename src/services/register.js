@@ -1,8 +1,8 @@
 import { axiosRequest } from "../configs/axios.config";
 
-export const loginApi = (information) => {
+export const addUserApi = (information) => {
   return axiosRequest({
-    url: `/QuanLyNguoiDung/DangNhap`,
+    url: `/QuanLyNguoiDung/DangKy`,
     method: "POST",
     data: information,
   });
