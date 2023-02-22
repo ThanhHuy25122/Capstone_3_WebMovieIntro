@@ -12,13 +12,16 @@ export const useMovieList = () => {
 
   const getMovieList = async () => {
     setLoadingState({ isLoading: true });
-
-    const result = await fetchMovieListApi();
-    setMovieList(
-      result.data.content.map((user, idx) => {
-        return { ...user, key: idx };
-      })
-    );
+    try {
+      const result = await fetchMovieListApi();
+      setMovieList(
+        result.data.content.map((user, idx) => {
+          return { ...user, key: idx };
+        })
+      );
+    } catch (error) {
+      console.error(error);
+    }
 
     setTimeout(() => {
       setLoadingState({ isLoading: false });

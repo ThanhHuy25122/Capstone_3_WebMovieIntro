@@ -6,3 +6,18 @@ export const fetchMovieShowtimesApi = (movieId) => {
     method: "GET",
   });
 };
+
+export const fetchCinamesApi = () => {
+  return axiosRequest({
+    url: `/QuanLyRap/LayThongTinHeThongRap`,
+    method: "GET",
+  });
+};
+
+export const fetchCinemaLocationApi = (cinameId) => {
+  return axiosRequest({
+    url: `/QuanLyRap/LayThongTinCumRapTheoHeThong?
+    maHeThongRap=${cinameId}`,
+    method: "GET",
+  });
+};

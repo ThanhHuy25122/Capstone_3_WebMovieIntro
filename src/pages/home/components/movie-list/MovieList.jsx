@@ -7,7 +7,7 @@ import "./index.scss";
 
 export default function MovieList() {
   const view = useResponsive();
-  const movieList = useMovieList();
+  const [movieList] = useMovieList();
   const navigate = useNavigate();
 
   let heightMovieCard = 500;

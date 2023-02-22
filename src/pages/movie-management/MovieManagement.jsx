@@ -1,18 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { useMovieList } from "../../hooks/useMovieList";
 import { notification, Table } from "antd";
 import { formatDate } from "utils";
 import { useNavigate } from "react-router-dom";
 import { deleteMovieApi } from "services/movie";
-import { CloseOutlined, EditOutlined, FormOutlined } from "@ant-design/icons";
+import {
+  CloseOutlined,
+  EditOutlined,
+  FormOutlined,
+  CalendarOutlined,
+} from "@ant-design/icons";
+import SearchMovie from "./components/SearchMovie";
 
 export default function MovieManagement() {
   const [movieList, getMovieList] = useMovieList();
+  const [searchedMovieList, setSearchedMovieList] = useState([]);
   const navigate = useNavigate();
 
   const handleDeleteMovie = async (maPhim) => {
     try {
-      if (window.confirm("Would you like to remove this flim?")) {
+      if (window.confirm("Would you like to remove this film?")) {
         await deleteMovieApi(maPhim);
 
         notification.success({
@@ -64,10 +71,31 @@ export default function MovieManagement() {
             className="remove-icon"
             onClick={() => handleDeleteMovie(text.maPhim)}
           />
+          <CalendarOutlined
+            className="add-icon"
+            style={{
+              fontSize: "1.3rem",
+            }}
+            onClick={() =>
+              navigate(
+                `/admin/movie-management/showtime-management/add/${text.maPhim}`
+              )
+            }
+          />
         </div>
       ),
     },
   ];
+
+  const handleSearchMovie = (value) => {
+    const filteredMovies = movieList.filter((movie) =>
+      movie.tenPhim.toLowerCase().includes(value.toLowerCase())
+    );
+    if (filteredMovies.length <= 0) {
+      notification.info("No search results");
+    }
+    setSearchedMovieList(filteredMovies);
+  };
 
   return (
     <div>
@@ -76,6 +104,7 @@ export default function MovieManagement() {
         onClick={() => navigate("/admin/movie-management/add")}
         type="primary"
       />
+      <SearchMovie movieList={movieList} />
       <Table columns={columns} dataSource={movieList} />
     </div>
   );

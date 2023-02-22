@@ -1,5 +1,225 @@
-import React from "react";
-
+import {
+  AutoComplete,
+  Button,
+  Cascader,
+  Checkbox,
+  Col,
+  Form,
+  Input,
+  InputNumber,
+  Row,
+  Select,
+} from "antd";
+import { useState } from "react";
+const { Option } = Select;
+const residences = [
+  {
+    value: "zhejiang",
+    label: "Zhejiang",
+    children: [
+      {
+        value: "hangzhou",
+        label: "Hangzhou",
+        children: [
+          {
+            value: "xihu",
+            label: "West Lake",
+          },
+        ],
+      },
+    ],
+  },
+];
+const formItemLayout = {
+  labelCol: {
+    xs: {
+      span: 24,
+    },
+    sm: {
+      span: 8,
+    },
+  },
+  wrapperCol: {
+    xs: {
+      span: 24,
+    },
+    sm: {
+      span: 16,
+    },
+  },
+};
+const tailFormItemLayout = {
+  wrapperCol: {
+    xs: {
+      span: 24,
+      offset: 0,
+    },
+    sm: {
+      span: 16,
+      offset: 8,
+    },
+  },
+};
 export default function ShowtimeManagement() {
-  return <div>ShowtimeManagement</div>;
+  const [form] = Form.useForm();
+  const onFinish = (values) => {
+    console.log("Received values of form: ", values);
+  };
+
+  const [autoCompleteResult, setAutoCompleteResult] = useState([]);
+  const onWebsiteChange = (value) => {
+    if (!value) {
+      setAutoCompleteResult([]);
+    } else {
+      setAutoCompleteResult(
+        [".com", ".org", ".net"].map((domain) => `${value}${domain}`)
+      );
+    }
+  };
+  const websiteOptions = autoCompleteResult.map((website) => ({
+    label: website,
+    value: website,
+  }));
+  return (
+    <Form
+      {...formItemLayout}
+      form={form}
+      name="register"
+      onFinish={onFinish}
+      initialValues={{
+        residence: ["zhejiang", "hangzhou", "xihu"],
+        prefix: "86",
+      }}
+      style={{
+        maxWidth: 600,
+      }}
+      scrollToFirstError
+    >
+      <Form.Item
+        name="email"
+        label="E-mail"
+        rules={[
+          {
+            type: "email",
+            message: "The input is not valid E-mail!",
+          },
+          {
+            required: true,
+            message: "Please input your E-mail!",
+          },
+        ]}
+      >
+        <Input />
+      </Form.Item>
+
+      <Form.Item
+        name="nickname"
+        label="Nickname"
+        tooltip="What do you want others to call you?"
+        rules={[
+          {
+            required: true,
+            message: "Please input your nickname!",
+            whitespace: true,
+          },
+        ]}
+      >
+        <Input />
+      </Form.Item>
+
+      <Form.Item
+        name="residence"
+        label="Habitual Residence"
+        rules={[
+          {
+            type: "array",
+            required: true,
+            message: "Please select your habitual residence!",
+          },
+        ]}
+      >
+        <Cascader options={residences} />
+      </Form.Item>
+
+      <Form.Item
+        name="website"
+        label="Website"
+        rules={[
+          {
+            required: true,
+            message: "Please input website!",
+          },
+        ]}
+      >
+        <AutoComplete
+          options={websiteOptions}
+          onChange={onWebsiteChange}
+          placeholder="website"
+        >
+          <Input />
+        </AutoComplete>
+      </Form.Item>
+
+      <Form.Item
+        name="intro"
+        label="Intro"
+        rules={[
+          {
+            required: true,
+            message: "Please input Intro",
+          },
+        ]}
+      >
+        <Input.TextArea showCount maxLength={100} />
+      </Form.Item>
+
+      <Form.Item
+        name="gender"
+        label="Gender"
+        rules={[
+          {
+            required: true,
+            message: "Please select gender!",
+          },
+        ]}
+      >
+        <Select placeholder="select your gender">
+          <Option value="male">Male</Option>
+          <Option value="female">Female</Option>
+          <Option value="other">Other</Option>
+        </Select>
+      </Form.Item>
+
+      <Form.Item
+        label="Captcha"
+        extra="We must make sure that your are a human."
+      >
+        <Row gutter={8}>
+          <Col span={12}>
+            <Form.Item
+              name="captcha"
+              noStyle
+              rules={[
+                {
+                  required: true,
+                  message: "Please input the captcha you got!",
+                },
+              ]}
+            >
+              <Input />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Button>Get captcha</Button>
+          </Col>
+        </Row>
+      </Form.Item>
+
+      <Form.Item {...tailFormItemLayout}>
+        <Button type="primary" htmlType="submit">
+          Register
+        </Button>
+      </Form.Item>
+    </Form>
+  );
 }
