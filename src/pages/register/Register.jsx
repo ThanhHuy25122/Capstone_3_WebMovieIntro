@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Button, Form, Input } from "antd";
 import { addUserApi } from "services/register";
 import { GROUP_ID } from "../../constants/index.js";

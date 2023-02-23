@@ -174,7 +174,7 @@ export default function MovieForm() {
       </Form.Item>
 
       <Form.Item label="Ngày khởi chiếu" name="ngayKhoiChieu">
-        <DatePicker />
+        <DatePicker showTime />
       </Form.Item>
       <Form.Item label="Đang chiếu" valuePropName="checked" name="dangChieu">
         <Switch />

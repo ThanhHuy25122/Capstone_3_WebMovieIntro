@@ -2,10 +2,10 @@ import { notification } from "antd";
 import Search from "antd/es/transfer/search";
 import React, { useState } from "react";
 
-export default function HandleSearchUser(props) {
+export default function SearchMovie(props) {
   const [searchUserState, setSearchUserState] = useState([]);
 
-  const handleSearch = ({ onSearch }) => {
+  const UserSearch = ({ onSearch }) => {
     return (
       <Search
         placeholder="input search text"
@@ -27,17 +27,6 @@ export default function HandleSearchUser(props) {
       notification.info("No search results");
     }
   };
-  return (
-    <div>
-      <Search
-        placeholder="Search movies"
-        enterButton="Search"
-        size="large"
-        onSearch={handleSearch}
-      />
-      <UserList
-        movieList={searchUserState.length ? searchUserState : props.movieList}
-      />
-    </div>
-  );
+
+  return <Search onSearch={handleSearchUser} />;
 }

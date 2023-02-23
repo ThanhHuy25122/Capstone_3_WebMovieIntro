@@ -111,7 +111,9 @@ export default function Booking() {
               })}
             </div>
           </h5>
-          <h5>Total: {_.sumBy(selectedSeatList, "giaVe").toLocaleString()}</h5>
+          <h5>
+            Total: {_.sumBy(selectedSeatList, "giaVe").toLocaleString()} VND
+          </h5>
 
           <button onClick={bookTicket} className="btn btn-warning">
             BOOK

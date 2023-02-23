@@ -1,8 +1,9 @@
 import { axiosRequest } from "configs/axios.config";
 
-export const addMovieShowtime = () => {
+export const addMovieShowtimeApi = (information) => {
   return axiosRequest({
-    url: ``,
+    url: `/QuanLyDatVe/TaoLichChieu`,
     method: "POST",
+    data: information,
   });
 };

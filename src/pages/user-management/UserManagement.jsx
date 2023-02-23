@@ -44,6 +44,7 @@ export default function UserManagement() {
           } catch (error) {
             notification.error({ message: error.response.data.content });
           }
+          console.log(1);
         };
 
         const handleConfirmRemove = () => {

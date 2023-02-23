@@ -1,4 +1,3 @@
-import { AdminLayoutItem } from "enums";
 import ShowtimeManagement from "pages/showtime-management/ShowtimeManagement";
 import UserManagement from "pages/user-management/UserManagement";
 import React from "react";
@@ -67,22 +66,19 @@ export default function Router() {
             {
               path: "/admin/movie-management",
               element: <MovieManagement />,
-              children: [
-                {
-                  path: "/admin/movie-management/add",
-                  element: <MovieForm />,
-                },
-                {
-                  path: "/admin/movie-management/edit/:movieId",
-                  element: <MovieForm />,
-                },
-                {
-                  path: "/admin/movie-management/showtime-management/:movieId",
-                  element: <ShowtimeManagement />,
-                },
-              ],
             },
-
+            {
+              path: "/admin/movie-management/add",
+              element: <MovieForm />,
+            },
+            {
+              path: "/admin/movie-management/edit/:movieId",
+              element: <MovieForm />,
+            },
+            {
+              path: "/admin/movie-management/showtime-management/add/:movieId",
+              element: <ShowtimeManagement />,
+            },
             {
               path: "/admin/user-management",
               element: <UserManagement />,
