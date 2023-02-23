@@ -7,17 +7,16 @@ export const fetchMovieShowtimesApi = (movieId) => {
   });
 };
 
-export const fetchCinamesApi = () => {
+export const fetchCinemasApi = () => {
   return axiosRequest({
     url: `/QuanLyRap/LayThongTinHeThongRap`,
     method: "GET",
   });
 };
 
-export const fetchCinemaLocationApi = (cinameId) => {
+export const fetchCinemaLocationsApi = (cinemaID) => {
   return axiosRequest({
-    url: `/QuanLyRap/LayThongTinCumRapTheoHeThong?
-    maHeThongRap=${cinameId}`,
+    url: `/QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=${cinemaID}`,
     method: "GET",
   });
 };

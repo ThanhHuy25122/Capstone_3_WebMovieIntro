@@ -79,7 +79,6 @@ export default function Router() {
               path: "/admin/movie-management/showtime-management/add/:movieId",
               element: <ShowtimeManagement />,
             },
-
             {
               path: "/admin/user-management",
               element: <UserManagement />,

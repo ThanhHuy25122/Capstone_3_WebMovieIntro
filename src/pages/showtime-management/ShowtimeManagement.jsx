@@ -1,225 +1,203 @@
 import {
-  AutoComplete,
   Button,
-  Cascader,
-  Checkbox,
-  Col,
+  DatePicker,
   Form,
-  Input,
+  Image,
   InputNumber,
-  Row,
+  Modal,
+  notification,
   Select,
 } from "antd";
-import { useState } from "react";
-const { Option } = Select;
-const residences = [
-  {
-    value: "zhejiang",
-    label: "Zhejiang",
-    children: [
-      {
-        value: "hangzhou",
-        label: "Hangzhou",
-        children: [
-          {
-            value: "xihu",
-            label: "West Lake",
-          },
-        ],
-      },
-    ],
-  },
-];
-const formItemLayout = {
-  labelCol: {
-    xs: {
-      span: 24,
-    },
-    sm: {
-      span: 8,
-    },
-  },
-  wrapperCol: {
-    xs: {
-      span: 24,
-    },
-    sm: {
-      span: 16,
-    },
-  },
-};
-const tailFormItemLayout = {
-  wrapperCol: {
-    xs: {
-      span: 24,
-      offset: 0,
-    },
-    sm: {
-      span: 16,
-      offset: 8,
-    },
-  },
-};
+import { useForm } from "antd/es/form/Form";
+import moment from "moment";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { fetchCinemasApi } from "services/cinema";
+import { fetchCinemaLocationsApi } from "services/cinema";
+import { fetchMovieDetailApi } from "services/movie";
+import { addMovieShowtimeApi } from "services/showtime";
+import { getCinemaListAction } from "store/actions/cinemaAction";
+
 export default function ShowtimeManagement() {
-  const [form] = Form.useForm();
-  const onFinish = (values) => {
-    console.log("Received values of form: ", values);
+  const { Option } = Select;
+  const dispatch = useDispatch();
+  const cinemaList = useSelector((state) => state.cinemaReducer.cinemaList);
+  const [cinemaLocationList, setCinemaLocationList] = useState([]);
+  const params = useParams();
+  const [movieDetail, setMovidetail] = useState({});
+  const navigate = useNavigate();
+  useEffect(() => {
+    getMovieDetail();
+    fetchCinemaList();
+  }, []);
+
+  const getMovieDetail = async () => {
+    const result = await fetchMovieDetailApi(params.movieId);
+    setMovidetail(result.data.content);
   };
 
-  const [autoCompleteResult, setAutoCompleteResult] = useState([]);
-  const onWebsiteChange = (value) => {
-    if (!value) {
-      setAutoCompleteResult([]);
-    } else {
-      setAutoCompleteResult(
-        [".com", ".org", ".net"].map((domain) => `${value}${domain}`)
-      );
+  const formItemLayout = {
+    labelCol: {
+      xs: {
+        span: 24,
+      },
+      sm: {
+        span: 8,
+      },
+    },
+    wrapperCol: {
+      xs: {
+        span: 24,
+      },
+      sm: {
+        span: 16,
+      },
+    },
+  };
+
+  const tailFormItemLayout = {
+    wrapperCol: {
+      xs: {
+        span: 24,
+        offset: 0,
+      },
+      sm: {
+        span: 16,
+        offset: 8,
+      },
+    },
+  };
+
+  const [form] = useForm();
+  const fetchCinemaList = async () => {
+    try {
+      const { data } = await fetchCinemasApi();
+      dispatch(getCinemaListAction(data.content));
+      fetchCinemaLocationList(data.content[0].maHeThongRap);
+    } catch ({ response }) {
+      notification.error({
+        message: response?.data?.content || "Something went wrong",
+      });
     }
   };
-  const websiteOptions = autoCompleteResult.map((website) => ({
-    label: website,
-    value: website,
-  }));
+
+  const fetchCinemaLocationList = async (cinema) => {
+    try {
+      const { data } = await fetchCinemaLocationsApi(cinema);
+      setCinemaLocationList(data.content);
+    } catch ({ response }) {
+      notification.error({
+        message: response?.data?.content || "Something went wrong",
+      });
+    }
+  };
+
+  const handleChange = async (value) => {
+    await fetchCinemaLocationList(value);
+  };
+
+  const renderCinemaList = () =>
+    cinemaList.map(({ maHeThongRap, tenHeThongRap }, idx) => (
+      <Option key={idx} value={maHeThongRap}>
+        {tenHeThongRap}
+      </Option>
+    ));
+
+  const renderCinemaLocationList = () => (
+    <Select placeholder="" value="">
+      {cinemaLocationList.map(({ maCumRap, tenCumRap }, idx) => (
+        <Option key={idx} value={maCumRap}>
+          {tenCumRap}
+        </Option>
+      ))}
+    </Select>
+  );
+
+  const handleFinish = async (values) => {
+    const { giaVe, maCumRapChieu, ngayChieuGioChieu } = values;
+
+    let ngayChieu = moment(new Date()).format("DD/MM/YYYY hh:mm:ss");
+    if (ngayChieuGioChieu) {
+      ngayChieu = ngayChieuGioChieu.format("DD/MM/YYYY hh:mm:ss");
+    }
+
+    const data = {
+      maPhim: params.movieId,
+      maRap: maCumRapChieu,
+      ngayChieuGioChieu: ngayChieu,
+      giaVe,
+    };
+    try {
+      await addMovieShowtimeApi(data);
+      notification.success({
+        message: "Successfully created movie showtime !",
+      });
+      navigate();
+    } catch ({ response }) {
+      notification.error({
+        message: response?.data?.content || "Error",
+      });
+    }
+  };
+
+  const handleConfirmCreate = (data) => {
+    Modal.confirm({
+      title: "Do you want to create a showtime for this movie?",
+      okText: "Create",
+      cancelText: "Cancel",
+      onOk: () => {
+        handleFinish(data);
+      },
+    });
+  };
+
   return (
-    <Form
-      {...formItemLayout}
-      form={form}
-      name="register"
-      onFinish={onFinish}
-      initialValues={{
-        residence: ["zhejiang", "hangzhou", "xihu"],
-        prefix: "86",
-      }}
-      style={{
-        maxWidth: 600,
-      }}
-      scrollToFirstError
-    >
-      <Form.Item
-        name="email"
-        label="E-mail"
-        rules={[
-          {
-            type: "email",
-            message: "The input is not valid E-mail!",
-          },
-          {
-            required: true,
-            message: "Please input your E-mail!",
-          },
-        ]}
+    <div style={{ display: "flex" }}>
+      <div
+        style={{
+          maxWidth: "25%",
+        }}
       >
-        <Input />
-      </Form.Item>
-
-      <Form.Item
-        name="nickname"
-        label="Nickname"
-        tooltip="What do you want others to call you?"
-        rules={[
-          {
-            required: true,
-            message: "Please input your nickname!",
-            whitespace: true,
-          },
-        ]}
+        <Image src={movieDetail.hinhAnh} />
+      </div>
+      <Form
+        {...formItemLayout}
+        form={form}
+        initialValues={{
+          giaVe: 90000,
+          tenRap: "BHDStar",
+          maCumRapChieu: "bhd-star-cineplex-3-2",
+          ngayChieuGioChieu: "",
+        }}
+        onFinish={handleConfirmCreate}
+        style={{
+          marginLeft: "5rem",
+          minWidth: "600px",
+          maxWidth: "60%",
+        }}
+        scrollToFirstError
       >
-        <Input />
-      </Form.Item>
+        <Form.Item name="tenRap" label="Cinema Name" hasFeedback>
+          <Select placeholder="Please select a country" onChange={handleChange}>
+            {renderCinemaList()}
+          </Select>
+        </Form.Item>
+        <Form.Item name="maCumRapChieu" label="Cinema Complex" hasFeedback>
+          {renderCinemaLocationList()}
+        </Form.Item>
+        <Form.Item label="Ngày khởi chiếu" name="ngayChieuGioChieu">
+          <DatePicker showTime />
+        </Form.Item>
 
-      <Form.Item
-        name="residence"
-        label="Habitual Residence"
-        rules={[
-          {
-            type: "array",
-            required: true,
-            message: "Please select your habitual residence!",
-          },
-        ]}
-      >
-        <Cascader options={residences} />
-      </Form.Item>
+        <Form.Item name="giaVe" label="Ticket Price">
+          <InputNumber min={80000} max={200000} />
+        </Form.Item>
 
-      <Form.Item
-        name="website"
-        label="Website"
-        rules={[
-          {
-            required: true,
-            message: "Please input website!",
-          },
-        ]}
-      >
-        <AutoComplete
-          options={websiteOptions}
-          onChange={onWebsiteChange}
-          placeholder="website"
-        >
-          <Input />
-        </AutoComplete>
-      </Form.Item>
-
-      <Form.Item
-        name="intro"
-        label="Intro"
-        rules={[
-          {
-            required: true,
-            message: "Please input Intro",
-          },
-        ]}
-      >
-        <Input.TextArea showCount maxLength={100} />
-      </Form.Item>
-
-      <Form.Item
-        name="gender"
-        label="Gender"
-        rules={[
-          {
-            required: true,
-            message: "Please select gender!",
-          },
-        ]}
-      >
-        <Select placeholder="select your gender">
-          <Option value="male">Male</Option>
-          <Option value="female">Female</Option>
-          <Option value="other">Other</Option>
-        </Select>
-      </Form.Item>
-
-      <Form.Item
-        label="Captcha"
-        extra="We must make sure that your are a human."
-      >
-        <Row gutter={8}>
-          <Col span={12}>
-            <Form.Item
-              name="captcha"
-              noStyle
-              rules={[
-                {
-                  required: true,
-                  message: "Please input the captcha you got!",
-                },
-              ]}
-            >
-              <Input />
-            </Form.Item>
-          </Col>
-          <Col span={12}>
-            <Button>Get captcha</Button>
-          </Col>
-        </Row>
-      </Form.Item>
-
-      <Form.Item {...tailFormItemLayout}>
-        <Button type="primary" htmlType="submit">
-          Register
-        </Button>
-      </Form.Item>
-    </Form>
+        <Form.Item {...tailFormItemLayout}>
+          <Button htmlType="submit">Register</Button>
+        </Form.Item>
+      </Form>
+    </div>
   );
 }
