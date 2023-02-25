@@ -1,9 +1,9 @@
-import { MaLoaiNguoiDung } from "enums";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useResponsive } from "../../hooks/useResposive";
 import { setUserInfoAction } from "../../store/actions/userAction";
+import { MaLoaiNguoiDung } from "enums";
 
 export default function Header() {
   const view = useResponsive();
@@ -18,10 +18,11 @@ export default function Header() {
   };
 
   return (
-    <div className={view.width > 1500 ? "container" : "container-fluid"}>
-      <nav className="navbar navbar-expand-sm navbar-light bg-light">
-        <NavLink className="navbar-brand" to={"/"}>
-          Movie
+    <div className="container">
+      <nav className="navbar navbar-expand-sm navbar-light header-bg ">
+        <NavLink style={{ fontSize: "30px" }} className="navbar-brand" to={"/"}>
+          <i style={{ fontSize: "2rem" }} class="las la-star-half-alt"></i>
+          MOVIE STAR
         </NavLink>
         <button
           className="navbar-toggler d-lg-none"
@@ -36,10 +37,17 @@ export default function Header() {
         </button>
         <div className="collapse navbar-collapse" id="collapsibleNavId">
           <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li className="nav-item active">
-              <NavLink to="/">Home</NavLink>
+            <li className="nav-item  ml-5">
+              <NavLink to="/">Trang chủ</NavLink>
+            </li>
+            <li className="nav-item  ml-4">
+              <a href="#movieList">Danh sách phim</a>
+            </li>
+            <li className="nav-item  ml-4">
+              <a href="#new">Tin tức</a>
             </li>
           </ul>
+
           <div className="ml-auto">
             {userState.userInfo ? (
               <>

@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
-
+import Slider from "react-slick";
 import { useMovieList } from "../../../../hooks/useMovieList";
 import { useResponsive } from "../../../../hooks/useResposive";
+import { Tabs } from "antd";
 import "./index.scss";
-
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 export default function MovieList() {
   const view = useResponsive();
   const [movieList] = useMovieList();
@@ -20,7 +22,7 @@ export default function MovieList() {
       return (
         <div
           key={ele.maPhim}
-          className="col-12 col-md-6 col-lg-4"
+          // className="col-12 col-md-6 col-lg-4"
           onClick={() => navigate(`/movie-detail/${ele.maPhim}`)}
         >
           <div
@@ -51,12 +53,91 @@ export default function MovieList() {
     });
   };
 
+  const ref = useRef({});
+
+  const next = () => {
+    ref.current.slickNext();
+    console.log("hehe");
+  };
+
+  const previous = () => {
+    ref.current.slickPrev();
+    console.log("hii");
+  };
+  const settings = {
+    className: "section-outstanding__slider",
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    infinite: false,
+    rows: 2,
+    accessibility: true,
+    adaptiveHeight: false,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          rows: 2,
+          adaptiveHeight: false,
+        },
+      },
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          rows: 2,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          rows: 1,
+        },
+      },
+      {
+        breakpoint: 576,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          rows: 1,
+        },
+      },
+    ],
+  };
   return (
     <div>
-      <div className="title">
+      <div id="movieList" className="title">
         <h3>Danh Sách Phim</h3>
       </div>
-      <div className="row mt-3 mx-auto pl-3 pr-3">{renderMovieList()}</div>
+
+      <header>
+        <Tabs>
+          <Tabs.TabPane tab="Phim sắp chiếu" key="tab1">
+            <Slider ref={ref} {...settings}>
+              {renderMovieList()}
+            </Slider>
+            <div style={{ textAlign: "center" }}>
+              <button className="list-button" onClick={() => previous()}>
+                <i className="las la-angle-left"></i>
+              </button>
+              <button className="list-button" onClick={() => next()}>
+                <i className="las la-angle-right"></i>
+              </button>
+            </div>
+          </Tabs.TabPane>
+          <Tabs.TabPane tab="Phim Sex Châu phi" key="tab2">
+            <div> This is ..cl.</div>
+          </Tabs.TabPane>
+        </Tabs>
+      </header>
+
+      {/* <div className="row mt-3 mx-auto pl-3 pr-3">
+       
+      </div> */}
     </div>
   );
 }

@@ -51,7 +51,7 @@ export default function MyCarousel() {
   };
   return (
     <>
-      <Carousel>{renderCarousel()}</Carousel>
+      <Carousel autoplay>{renderCarousel()}</Carousel>
     </>
   );
 }
