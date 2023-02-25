@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, notification } from "antd";
 import { addUserApi } from "services/register";
 import { GROUP_ID } from "../../constants/index.js";
 import { useNavigate } from "react-router";
@@ -56,9 +56,14 @@ export default function Register() {
       maNhom: GROUP_ID,
       hoTen: values.hoTen,
     });
-
-    await addUserApi(state);
-    navigate("/login");
+    try {
+      await addUserApi(state);
+      navigate("/login");
+    } catch ({ response }) {
+      notification.error({
+        message: response?.data?.content,
+      });
+    }
   };
 
   // block space
