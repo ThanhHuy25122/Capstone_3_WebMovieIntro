@@ -24,6 +24,7 @@ export default function MovieForm() {
   const params = useParams();
   const [file, setFile] = useState();
   const [imageReview, setImageReview] = useState();
+  /* eslint-disable react-hooks/exhaustive-deps */
   const [componentSize, setComponentSize] = useState("default");
   const navigate = useNavigate();
   const onFormLayoutChange = ({ size }) => {

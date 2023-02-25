@@ -3,10 +3,12 @@ import { Modal, notification, Table } from "antd";
 import { useUserList } from "hooks/useUserList";
 import Search from "antd/es/input/Search";
 import { removeUserApi } from "services/user";
-import { CloseOutlined, EditOutlined } from "@ant-design/icons";
+import { CloseOutlined, EditOutlined, FormOutlined } from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
 
 export default function UserManagement() {
   const [userList, getUserList] = useUserList();
+  const navigate = useNavigate();
   const columns = [
     {
       title: "Full Name",
@@ -56,7 +58,10 @@ export default function UserManagement() {
 
         return (
           <>
-            <EditOutlined className="update-icon" />
+            <EditOutlined
+              className="update-icon"
+              onClick={() => navigate(`/admin/user-management/add/${""}`)}
+            />
             <CloseOutlined
               className="remove-icon"
               onClick={handleConfirmRemove}
@@ -85,9 +90,10 @@ export default function UserManagement() {
         user.hoTen.toLowerCase().includes(value.toLowerCase()) ||
         user.taiKhoan.toLowerCase().includes(value.toLowerCase())
     );
-    setSearchUserState(filteredUsers);
     if (filteredUsers.length <= 0) {
       Modal.info({ message: "No search results" });
+    } else {
+      setSearchUserState(filteredUsers);
     }
   };
 
@@ -95,7 +101,12 @@ export default function UserManagement() {
 
   return (
     <>
-      <br />
+      <p />
+      <FormOutlined
+        className="add-icon"
+        onClick={() => navigate("/admin/user-management/add")}
+      />
+      <p />
       <UserSearch onSearch={handleSearchUser} />
       <p />
 

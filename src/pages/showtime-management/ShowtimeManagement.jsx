@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {
   Button,
   DatePicker,
@@ -25,7 +26,7 @@ export default function ShowtimeManagement() {
   const cinemaList = useSelector((state) => state.cinemaReducer.cinemaList);
   const [cinemaLocationList, setCinemaLocationList] = useState([]);
   const params = useParams();
-  const [movieDetail, setMovidetail] = useState({});
+  const [movieDetail, setMovieDetail] = useState({});
   const navigate = useNavigate();
   useEffect(() => {
     getMovieDetail();
@@ -34,7 +35,7 @@ export default function ShowtimeManagement() {
 
   const getMovieDetail = async () => {
     const result = await fetchMovieDetailApi(params.movieId);
-    setMovidetail(result.data.content);
+    setMovieDetail(result.data.content);
   };
 
   const formItemLayout = {
@@ -88,7 +89,7 @@ export default function ShowtimeManagement() {
       setCinemaLocationList(data.content);
     } catch ({ response }) {
       notification.error({
-        message: response?.data?.content || "Something went wrong",
+        message: response?.data?.content || "Tài khoản đã tồn tại",
       });
     }
   };
@@ -133,7 +134,7 @@ export default function ShowtimeManagement() {
       notification.success({
         message: "Successfully created movie showtime !",
       });
-      navigate();
+      navigate("/admin/movie-management");
     } catch ({ response }) {
       notification.error({
         message: response?.data?.content || "Error",

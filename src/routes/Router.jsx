@@ -1,4 +1,5 @@
 import ShowtimeManagement from "pages/showtime-management/ShowtimeManagement";
+import UserForm from "pages/user-form/UserForm";
 import UserManagement from "pages/user-management/UserManagement";
 import React from "react";
 import { useRoutes } from "react-router-dom";
@@ -82,6 +83,10 @@ export default function Router() {
             {
               path: "/admin/user-management",
               element: <UserManagement />,
+            },
+            {
+              path: "/admin/user-management/add",
+              element: <UserForm />,
             },
           ],
         },

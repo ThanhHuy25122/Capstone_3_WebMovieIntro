@@ -10,7 +10,7 @@ import {
   FormOutlined,
   CalendarOutlined,
 } from "@ant-design/icons";
-import SearchMovie from "./components/SearchMovie";
+import SearchMovie from "./components/search-movie/SearchMovie";
 
 export default function MovieManagement() {
   const [movieList, getMovieList] = useMovieList();
@@ -62,16 +62,19 @@ export default function MovieManagement() {
       render: (text) => (
         <div style={{ display: "flex" }}>
           <EditOutlined
+            title="Edit"
             className="update-icon"
             onClick={() =>
               navigate(`/admin/movie-management/edit/${text.maPhim}`)
             }
           />
           <CloseOutlined
+            title="Delete"
             className="remove-icon"
             onClick={() => handleDeleteMovie(text.maPhim)}
           />
           <CalendarOutlined
+            title="Add Showtime"
             className="add-icon"
             style={{
               fontSize: "1.3rem",
@@ -100,9 +103,13 @@ export default function MovieManagement() {
   return (
     <div>
       <FormOutlined
+        title="Add Movie"
         className="add-icon"
         onClick={() => navigate("/admin/movie-management/add")}
         type="primary"
+        style={{
+          marginBottom: "0.6rem",
+        }}
       />
       <SearchMovie movieList={movieList} />
       <Table columns={columns} dataSource={movieList} />

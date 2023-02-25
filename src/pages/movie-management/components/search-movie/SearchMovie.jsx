@@ -1,5 +1,6 @@
 import { notification } from "antd";
-import Search from "antd/es/transfer/search";
+import Search from "antd/es/input/Search";
+
 import React, { useState } from "react";
 
 export default function SearchMovie(props) {
@@ -16,7 +17,7 @@ export default function SearchMovie(props) {
     );
   };
 
-  const handleSearchUser = (value) => {
+  const handleSearchMovie = (value) => {
     const filteredUsers = props.userList?.filter(
       (user) =>
         user.hoTen.toLowerCase().includes(value.toLowerCase()) ||
@@ -28,5 +29,18 @@ export default function SearchMovie(props) {
     }
   };
 
-  return <Search onSearch={handleSearchUser} />;
+  return (
+    <div
+      style={{
+        marginBottom: "0.6rem",
+      }}
+    >
+      <Search
+        placeholder="input search text"
+        size="large"
+        enterButton="Search"
+        onSearch={handleSearchMovie}
+      />
+    </div>
+  );
 }
