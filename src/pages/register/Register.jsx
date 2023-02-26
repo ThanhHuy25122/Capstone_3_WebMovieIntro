@@ -26,8 +26,6 @@ export default function Register() {
 
   const navigate = useNavigate();
 
-  console.log({ userType, bookingInformation });
-
   const params = useParams();
 
   useEffect(() => {
@@ -66,10 +64,10 @@ export default function Register() {
       });
 
       setUserType(loaiNguoiDung);
-      setBookingInformation(thongTinDatVe.lenght || null);
+      thongTinDatVe.lenght > 0 ? setBookingInformation(thongTinDatVe) : <></>;
     } catch ({ response }) {
       notification.error({
-        message: response?.data?.content || "Xin lỗi đã xảy ra lổi !",
+        message: response?.data?.content || "Xin lỗi đã xảy ra lỗi !",
       });
       navigate("/");
     }
@@ -282,7 +280,12 @@ export default function Register() {
           )}
         </Form.Item>
       </Form>
-      {params.userId && <BookedTickets />}
+      {params.userId && (
+        <BookedTickets
+          bookingInformation={bookingInformation}
+          setBookingInformation={setBookingInformation}
+        />
+      )}
     </div>
   );
 }
