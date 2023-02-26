@@ -38,6 +38,10 @@ export default function Router() {
               path: "/booking/:showtimeId",
               element: <Booking />,
             },
+            {
+              path: "/update-user/:userId",
+              element: <Register />,
+            },
           ],
         },
         {

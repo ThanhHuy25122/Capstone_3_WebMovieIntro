@@ -1,20 +1,79 @@
-import React, { useState } from "react";
-import { Button, Form, Input, notification } from "antd";
-import { addUserApi } from "services/register";
+import React, { useEffect, useState } from "react";
+import { Button, Form, Input, Modal, notification } from "antd";
+import {
+  addUserApi,
+  fetchUserAccountApi,
+  updateUserApi,
+} from "services/register";
 import { GROUP_ID } from "../../constants/index.js";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
+import BookedTickets from "./components/booked-tickets/BookedTickets.jsx";
+import { MaLoaiNguoiDung } from "enums/index.js";
+import { useForm } from "antd/es/form/Form.js";
 
 export default function Register() {
   const [state, setState] = useState({
+    maNhom: GROUP_ID,
     taiKhoan: "",
     matKhau: "",
     email: "",
     soDt: "",
-    maNhom: GROUP_ID,
     hoTen: "",
   });
 
+  const [userType, setUserType] = useState(null);
+  const [bookingInformation, setBookingInformation] = useState(null);
+
   const navigate = useNavigate();
+
+  console.log({ userType, bookingInformation });
+
+  const params = useParams();
+
+  useEffect(() => {
+    if (params.userId) {
+      getUpdateUser();
+    }
+  }, [params.userId]);
+
+  const getUpdateUser = async () => {
+    try {
+      const result = await fetchUserAccountApi();
+      const {
+        hoTen,
+        taiKhoan,
+        matKhau,
+        email,
+        soDT,
+        loaiNguoiDung,
+        thongTinDatVe,
+      } = result.data.content;
+
+      form.setFieldsValue({
+        hoTen: hoTen,
+        taiKhoan: taiKhoan,
+        matKhau: matKhau,
+        email: email,
+        soDt: soDT,
+      });
+      setState({
+        ...state,
+        hoTen: hoTen,
+        taiKhoan: taiKhoan,
+        matKhau: matKhau,
+        email: email,
+        soDt: soDT,
+      });
+
+      setUserType(loaiNguoiDung);
+      setBookingInformation(thongTinDatVe.lenght || null);
+    } catch ({ response }) {
+      notification.error({
+        message: response?.data?.content || "Xin lỗi đã xảy ra lổi !",
+      });
+      navigate("/");
+    }
+  };
 
   const formItemLayout = {
     labelCol: {
@@ -46,22 +105,48 @@ export default function Register() {
       },
     },
   };
-  const [form] = Form.useForm();
+
+  const [form] = useForm();
   const handleFinish = async (values) => {
     setState({
       taiKhoan: values.taiKhoan,
       matKhau: values.matKhau,
       email: values.email,
       soDt: values.soDt,
-      maNhom: GROUP_ID,
       hoTen: values.hoTen,
     });
+    const data = {
+      ...values,
+      maLoaiNguoiDung: MaLoaiNguoiDung.KhachHang,
+      maNhom: GROUP_ID,
+      loaiNguoiDung: userType,
+      thongTinDatVe: bookingInformation,
+    };
+
+    console.log(data);
+
     try {
-      await addUserApi(state);
-      navigate("/login");
+      if (params.userId) {
+        await updateUserApi(data);
+        notification.success({
+          message: "Cập nhật tài khoản thành công !",
+        });
+      } else {
+        try {
+          await addUserApi(state);
+          notification.success({
+            message: "Đăng ký tài khoản thành công",
+          });
+          setTimeout(() => navigate("/login"), 1000);
+        } catch ({ response }) {
+          Modal.error({
+            title: response?.data.content || " Lỗi không đăng ký được ",
+          });
+        }
+      }
     } catch ({ response }) {
       notification.error({
-        message: response?.data?.content,
+        message: response?.data?.content || " Không thể cập nhật tài khoản",
       });
     }
   };
@@ -80,6 +165,7 @@ export default function Register() {
       style={{
         minHeight: "calc( 100vh - 160px )",
         paddingTop: "50px",
+        backgroundColor: "white",
       }}
     >
       <Form
@@ -91,6 +177,13 @@ export default function Register() {
           maxWidth: 600,
         }}
         scrollToFirstError
+        initialValues={{
+          hoTen: "",
+          taiKhoan: "",
+          matKhau: "",
+          eamil: "",
+          soDt: "",
+        }}
       >
         <Form.Item
           name="hoTen"
@@ -182,11 +275,14 @@ export default function Register() {
         </Form.Item>
 
         <Form.Item {...tailFormItemLayout}>
-          <Button type="primary" htmlType="submit">
-            Register
-          </Button>
+          {params.userId ? (
+            <Button htmlType="submit">Update</Button>
+          ) : (
+            <Button htmlType="submit">Register</Button>
+          )}
         </Form.Item>
       </Form>
+      {params.userId && <BookedTickets />}
     </div>
   );
 }

@@ -54,15 +54,15 @@ export default function MovieForm() {
     } = result.data.content;
 
     form.setFieldsValue({
-      tenPhim,
-      moTa,
-      trailer,
-      maNhom,
+      tenPhim: tenPhim,
+      moTa: moTa,
+      trailer: trailer,
+      maNhom: maNhom,
       ngayKhoiChieu: moment(ngayKhoiChieu),
-      sapChieu,
-      dangChieu,
-      hot,
-      danhGia,
+      sapChieu: sapChieu,
+      dangChieu: dangChieu,
+      hot: hot,
+      danhGia: danhGia,
     });
     setImageReview(hinhAnh);
   };

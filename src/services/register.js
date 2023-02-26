@@ -7,3 +7,17 @@ export const addUserApi = (information) => {
     data: information,
   });
 };
+
+export const fetchUserAccountApi = () => {
+  return axiosRequest({
+    url: `/QuanLyNguoiDung/ThongTinTaiKhoan`,
+    method: "POST",
+  });
+};
+export const updateUserApi = (information) => {
+  return axiosRequest({
+    url: `/QuanLyNguoiDung/CapNhatThongTinNguoiDung`,
+    method: "PUT",
+    data: information,
+  });
+};

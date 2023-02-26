@@ -1,18 +1,7 @@
-
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&display=swap");
 
 body {
   font-family: "Times New Roman", Times, serif;
-}
-
-.container {
-  padding-right: 0px !important;
-  padding-left: 0px !important;
-}
-
-.container-fluid {
-  padding-right: 0px !important;
-  padding-left: 0px !important;
 }
 
 .banner {
@@ -154,26 +143,25 @@ h3 {
 
   transition: all 0.4s;
 }
-.list-button:focus{
+.list-button:focus {
   outline: none;
 }
 li {
   color: white;
 }
 
-.ant-tabs-tab-btn{
+.ant-tabs-tab-btn {
   color: white;
   font-size: 24px;
   transition: all 0.4s;
- 
 }
-.slick-initialized .slick-slide{
+.slick-initialized .slick-slide {
   padding: 0 10px;
 }
 /* movie-detail */
-.text-detail{
+.text-detail {
   color: rgb(149, 154, 160);
 }
-.texttime-detail{
-  color:#007bff !important;
+.texttime-detail {
+  color: #007bff !important;
 }

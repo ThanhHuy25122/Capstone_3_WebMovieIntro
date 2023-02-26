@@ -8,14 +8,8 @@ import "./index.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 export default function MovieList() {
-  const view = useResponsive();
   const [movieList] = useMovieList();
   const navigate = useNavigate();
-
-  let heightMovieCard = 500;
-  if (view.width < 768) {
-    heightMovieCard = 550;
-  }
 
   const renderMovieList = () => {
     return movieList.map((ele) => {
@@ -29,14 +23,14 @@ export default function MovieList() {
             className="card movie-card"
             style={{
               marginBottom: 20,
-              height: heightMovieCard,
+              height: 500,
               overflow: "hidden",
             }}
           >
             <img
               style={{
                 objectFit: "cover",
-                minHeight: heightMovieCard - 2,
+                minHeight: 500 - 2,
                 position: "relative",
                 borderRadius: "0.25rem",
               }}
@@ -57,12 +51,10 @@ export default function MovieList() {
 
   const next = () => {
     ref.current.slickNext();
-    console.log("hehe");
   };
 
   const previous = () => {
     ref.current.slickPrev();
-    console.log("hii");
   };
   const settings = {
     className: "section-outstanding__slider",
@@ -93,8 +85,8 @@ export default function MovieList() {
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
+          slidesToShow: 1,
+          slidesToScroll: 1,
           rows: 1,
         },
       },
@@ -129,7 +121,7 @@ export default function MovieList() {
               </button>
             </div>
           </Tabs.TabPane>
-          <Tabs.TabPane tab="Phim Sex Châu phi" key="tab2">
+          <Tabs.TabPane tab="Danh Sach Phim Theo Ngay" key="tab2">
             <div> This is ..cl.</div>
           </Tabs.TabPane>
         </Tabs>
