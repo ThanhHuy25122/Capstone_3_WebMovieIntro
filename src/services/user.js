@@ -1,5 +1,5 @@
 import { axiosRequest } from "configs/axios.config";
-import { GROUP_ID } from "constants";
+import { GROUP_ID } from "../constants";
 
 export const fetchUserListApi = () => {
   return axiosRequest({

@@ -1,7 +1,10 @@
 import React from "react";
 import { Space, Table, Tag } from "antd";
 
-export default function BookedTickets() {
+export default function BookedTickets({
+  bookingInformation,
+  setBookingInformation,
+}) {
   const columns = [
     {
       title: "Name",
@@ -73,5 +76,9 @@ export default function BookedTickets() {
       tags: ["cool", "teacher"],
     },
   ];
-  return <Table columns={columns} dataSource={data} />;
+  if (bookingInformation?.length > 0) {
+    return <Table columns={columns} dataSource={data} />;
+  } else {
+    return <Table columns={columns} dataSource={null} />;
+  }
 }
