@@ -1,13 +1,12 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useResponsive } from "../../hooks/useResposive";
 import { setUserInfoAction } from "../../store/actions/userAction";
 import { MaLoaiNguoiDung } from "enums";
 
 export default function Header() {
-  const view = useResponsive();
   const userState = useSelector((state) => state.userReducer);
+  const { userInfo } = userState;
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -17,11 +16,13 @@ export default function Header() {
     navigate("/");
   };
 
+  console.log(userState);
+
   return (
     <div className="container">
       <nav className="navbar navbar-expand-sm navbar-light header-bg ">
         <NavLink style={{ fontSize: "30px" }} className="navbar-brand" to={"/"}>
-          <i style={{ fontSize: "2rem" }} class="las la-star-half-alt"></i>
+          <i style={{ fontSize: "2rem" }} className="las la-star-half-alt"></i>
           MOVIE STAR
         </NavLink>
         <button
@@ -49,12 +50,19 @@ export default function Header() {
           </ul>
 
           <div className="ml-auto">
-            {userState.userInfo ? (
+            {userInfo ? (
               <>
-                <span className="mr-3">Hello {userState.userInfo.hoTen}</span>
-                {userState.userInfo.maLoaiNguoiDung !==
-                MaLoaiNguoiDung.QuanTri ? (
-                  <></>
+                {userInfo.maLoaiNguoiDung !== MaLoaiNguoiDung.QuanTri ? (
+                  <>
+                    <span className="mr-3">
+                      Hi,{" "}
+                      {
+                        <NavLink to={`/update-user/${userInfo?.taiKhoan}`}>
+                          {userInfo?.hoTen}
+                        </NavLink>
+                      }
+                    </span>
+                  </>
                 ) : (
                   <>
                     <button

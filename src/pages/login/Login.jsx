@@ -1,3 +1,4 @@
+import { notification } from "antd";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -23,11 +24,19 @@ export default function Login() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const result = await loginApi(state);
-
-    localStorage.setItem("USER_INFO_KEY", JSON.stringify(result.data.content));
-    dispatch(setUserInfoAction(result.data.content));
-    navigate("/");
+    try {
+      const result = await loginApi(state);
+      localStorage.setItem(
+        "USER_INFO_KEY",
+        JSON.stringify(result.data.content)
+      );
+      dispatch(setUserInfoAction(result.data.content));
+      navigate("/");
+    } catch ({ response }) {
+      notification.error({
+        message: response?.data?.content || "Đăng nhập không thành công !",
+      });
+    }
   };
 
   return (
@@ -51,7 +60,7 @@ export default function Login() {
           <label htmlFor="">Password</label>
           <input
             onChange={handleChange}
-            type="text"
+            type="password"
             name="matKhau"
             className="form-control "
           />
