@@ -46,7 +46,6 @@ export default function UserManagement() {
           } catch (error) {
             notification.error({ message: error.response.data.content });
           }
-          console.log(1);
         };
 
         const handleConfirmRemove = () => {
@@ -60,7 +59,9 @@ export default function UserManagement() {
           <>
             <EditOutlined
               className="update-icon"
-              onClick={() => navigate(`/admin/user-management/add/${""}`)}
+              onClick={() =>
+                navigate(`/admin/user-management/edit/${text.taiKhoan}`)
+              }
             />
             <CloseOutlined
               className="remove-icon"

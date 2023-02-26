@@ -38,7 +38,7 @@ export default function AdminLayout() {
     getItem(
       movieManagement[1],
       movieManagement[0],
-      <PieChartOutlined />,
+      <DesktopOutlined />,
       null,
       null,
       () => handleItemClick(movieManagement[0])
@@ -46,27 +46,12 @@ export default function AdminLayout() {
     getItem(
       userManagament[1],
       userManagament[0],
-      <DesktopOutlined />,
+      <UserOutlined />,
       null,
       null,
       () => handleItemClick(userManagament[0])
     ),
-    getItem("Option 3", "3", <FileOutlined />, null, null, () =>
-      handleItemClick("#")
-    ),
-    getItem(
-      "Navigation One",
-      "sub1",
-      <UserOutlined />,
-      [
-        getItem("Option 5", "5", null, null, null, () => handleItemClick("#")),
-        getItem("Option 6", "6", null, null, null, () => handleItemClick("#")),
-        getItem("Option 7", "7", null, null, null, () => handleItemClick("#")),
-        getItem("Option 8", "8", null, null, null, () => handleItemClick("#")),
-      ],
-      null,
-      () => handleItemClick("ub1")
-    ),
+
     getItem(
       "Navigation Two",
       "sub2",

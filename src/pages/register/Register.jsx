@@ -121,8 +121,6 @@ export default function Register() {
       thongTinDatVe: bookingInformation,
     };
 
-    console.log(data);
-
     try {
       if (params.userId) {
         await updateUserApi(data);
