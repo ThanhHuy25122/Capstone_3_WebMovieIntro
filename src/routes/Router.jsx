@@ -81,7 +81,7 @@ export default function Router() {
               element: <MovieForm />,
             },
             {
-              path: "/admin/movie-management/showtime-management/add/:movieId",
+              path: "/admin/showtime-management/add/:movieId",
               element: <ShowtimeManagement />,
             },
             {
@@ -90,6 +90,10 @@ export default function Router() {
             },
             {
               path: "/admin/user-management/add",
+              element: <UserForm />,
+            },
+            {
+              path: "/admin/user-management/edit/:userId",
               element: <UserForm />,
             },
           ],

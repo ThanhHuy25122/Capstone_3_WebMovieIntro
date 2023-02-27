@@ -2,7 +2,6 @@ import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Slider from "react-slick";
 import { useMovieList } from "../../../../hooks/useMovieList";
-import { useResponsive } from "../../../../hooks/useResposive";
 import { Tabs } from "antd";
 import "./index.scss";
 import "slick-carousel/slick/slick.css";

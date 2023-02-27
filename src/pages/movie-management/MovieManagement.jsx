@@ -80,9 +80,7 @@ export default function MovieManagement() {
               fontSize: "1.3rem",
             }}
             onClick={() =>
-              navigate(
-                `/admin/movie-management/showtime-management/add/${text.maPhim}`
-              )
+              navigate(`/admin/showtime-management/add/${text.maPhim}`)
             }
           />
         </div>

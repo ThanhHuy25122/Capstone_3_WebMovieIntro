@@ -1,24 +1,106 @@
-import {
-  Button,
-  Cascader,
-  DatePicker,
-  Form,
-  Input,
-  InputNumber,
-  Radio,
-  Switch,
-} from "antd";
-import { useState } from "react";
+import { Button, Form, Input, notification, Radio, Switch } from "antd";
+import { GROUP_ID } from "../../constants";
+import { useEffect, useState } from "react";
+import { createUserApi } from "services/user";
+import { useNavigate, useParams } from "react-router-dom";
+import { fetchUserAccountApi } from "services/register";
+import { useForm } from "antd/es/form/Form";
 
 export default function UserForm() {
+  const [form] = useForm();
+
   const [componentSize, setComponentSize] = useState("default");
+  const navigate = useNavigate();
+  const [userState, setUserState] = useState({
+    maNhom: GROUP_ID,
+    taiKhoan: "",
+    matKhau: "",
+    email: "",
+    soDt: "",
+    hoTen: "",
+    maLoaiNguoiDung: "KhachHang",
+  });
+  const params = useParams();
+
+  useEffect(() => {
+    if (params.userId) {
+      getUserAccoutData();
+    }
+  }, [params.userId]);
+
+  const getUserAccoutData = async () => {
+    const result = await fetchUserAccountApi();
+    const { hoTen, taiKhoan, matKhau, soDT, maLoaiNguoiDung, email } =
+      result?.data?.content;
+
+    form.setFieldsValue({
+      hoTen: hoTen,
+      taiKhoan: taiKhoan,
+      matKhau: matKhau,
+      email: email,
+      soDt: soDT,
+      maLoaiNguoiDung: maLoaiNguoiDung === "QuanTri" ? true : false,
+    });
+
+    setUserState({
+      ...userState,
+      hoTen,
+      taiKhoan,
+      matKhau,
+      soDt: soDT,
+      maLoaiNguoiDung,
+      email,
+    });
+  };
+
   const onFormLayoutChange = ({ size }) => {
     setComponentSize(size);
   };
+
+  const handleFinish = async ({
+    hoTen,
+    taiKhoan,
+    matKhau,
+    email,
+    soDt,
+    maLoaiNguoiDung,
+  }) => {
+    maLoaiNguoiDung = maLoaiNguoiDung ? "QuanTri" : "KhachHang";
+
+    setUserState({
+      ...userState,
+      hoTen,
+      taiKhoan,
+      matKhau,
+      email,
+      soDt,
+      maLoaiNguoiDung,
+    });
+
+    try {
+      createUserApi(userState);
+      notification.success({
+        message: "Thêm tài khoản thành công !",
+      });
+      navigate("/admin/user-management");
+    } catch ({ response }) {
+      notification.error({
+        message: response.data.content || "Không thể thêm được tài khoản !",
+      });
+    }
+  };
+
+  function handleKeyPress(event) {
+    if (event.key === " ") {
+      event.preventDefault();
+    }
+  }
+
   return (
     <Form
+      form={form}
       labelCol={{
-        span: 4,
+        span: 5,
       }}
       wrapperCol={{
         span: 14,
@@ -26,8 +108,15 @@ export default function UserForm() {
       layout="horizontal"
       initialValues={{
         size: componentSize,
+        hoTen: "",
+        taiKhoan: "",
+        matKhau: "",
+        email: "",
+        soDt: "",
+        maLoaiNguoiDung: false,
       }}
       onValuesChange={onFormLayoutChange}
+      onFinish={handleFinish}
       size={componentSize}
       style={{
         maxWidth: 600,
@@ -40,43 +129,77 @@ export default function UserForm() {
           <Radio.Button value="large">Large</Radio.Button>
         </Radio.Group>
       </Form.Item>
-      <Form.Item label="Input">
+      <Form.Item
+        name="hoTen"
+        label="Họ và tên"
+        rules={[{ required: true, message: "Không được để trống !" }]}
+      >
         <Input />
       </Form.Item>
-      <Form.Item label="Input">
+      <Form.Item
+        onKeyPress={handleKeyPress}
+        name="taiKhoan"
+        label="Tài Khoản"
+        rules={[{ required: true, message: "Không được để trống !" }]}
+      >
         <Input />
       </Form.Item>
-      <Form.Item label="Input">
+      <Form.Item
+        onKeyPress={handleKeyPress}
+        name="matKhau"
+        label="Mật Khẩu"
+        rules={[
+          { required: true, message: "Không được để trống !" },
+          {
+            pattern: new RegExp(
+              /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm
+            ),
+            message:
+              "Tối thiểu tám ký tự, ít nhất một chữ cái in hoa, một chữ cái thường, một chữ số.",
+          },
+        ]}
+      >
         <Input />
       </Form.Item>
-
-      <Form.Item label="Cascader">
-        <Cascader
-          options={[
-            {
-              value: "zhejiang",
-              label: "Zhejiang",
-              children: [
-                {
-                  value: "hangzhou",
-                  label: "Hangzhou",
-                },
-              ],
-            },
-          ]}
-        />
+      <Form.Item
+        onKeyPress={handleKeyPress}
+        name="email"
+        label="Email"
+        rules={[
+          { required: true, message: "Không được để trống !" },
+          {
+            pattern: new RegExp(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g),
+            message: " Phải đúng định dạng email abc@exp.com",
+          },
+        ]}
+      >
+        <Input />
       </Form.Item>
-      <Form.Item label="DatePicker">
-        <DatePicker />
+      <Form.Item
+        onKeyPress={handleKeyPress}
+        name="soDt"
+        label="Số điện thoại"
+        rules={[
+          { required: true, message: "Không được để trống !" },
+          {
+            pattern: new RegExp(/^0\d{9}$/),
+            message: "Phải chứa 10 số và bắt đầu bằng số 0",
+          },
+        ]}
+      >
+        <Input />
       </Form.Item>
-      <Form.Item label="InputNumber">
-        <InputNumber />
-      </Form.Item>
-      <Form.Item label="Switch" valuePropName="checked">
+      <Form.Item
+        name="maLoaiNguoiDung"
+        label="Quản Trị"
+        valuePropName="checked"
+      >
         <Switch />
       </Form.Item>
-      <Form.Item label="Button">
-        <Button>Button</Button>
+      <Form.Item label="  ">
+        <Button htmlType="submit" className="btn-primary">
+          Add User
+        </Button>
       </Form.Item>
     </Form>
   );

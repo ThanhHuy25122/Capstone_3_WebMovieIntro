@@ -8,6 +8,14 @@ export const fetchUserListApi = () => {
   });
 };
 
+export const createUserApi = (information) => {
+  return axiosRequest({
+    url: `QuanLyNguoiDung/ThemNguoiDung`,
+    method: "POST",
+    data: information,
+  });
+};
+
 export const removeUserApi = (username) => {
   return axiosRequest({
     url: `/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${username}`,
