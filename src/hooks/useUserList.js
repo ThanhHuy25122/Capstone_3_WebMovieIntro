@@ -24,7 +24,9 @@ export const useUserList = () => {
       console.error(error);
     }
 
-    setLoadingState({ isLoading: false });
+    setTimeout(() => {
+      setLoadingState({ isLoading: false });
+    }, 900);
   };
 
   return [userList, getUserList];

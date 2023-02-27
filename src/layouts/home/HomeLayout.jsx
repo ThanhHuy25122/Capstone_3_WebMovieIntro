@@ -8,7 +8,12 @@ export default function HomeLayout() {
   return (
     <>
       <Header />
-      <div className="container">
+      <div
+        className="container"
+        style={{
+          backgroundColor: "",
+        }}
+      >
         <Outlet />
       </div>
       <Footer />

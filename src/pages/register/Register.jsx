@@ -12,6 +12,36 @@ import { MaLoaiNguoiDung } from "enums/index.js";
 import { useForm } from "antd/es/form/Form.js";
 
 export default function Register() {
+  const formItemLayout = {
+    labelCol: {
+      xs: {
+        span: 24,
+      },
+      sm: {
+        span: 8,
+      },
+    },
+    wrapperCol: {
+      xs: {
+        span: 24,
+      },
+      sm: {
+        span: 16,
+      },
+    },
+  };
+  const tailFormItemLayout = {
+    wrapperCol: {
+      xs: {
+        span: 24,
+        offset: 0,
+      },
+      sm: {
+        span: 16,
+        offset: 8,
+      },
+    },
+  };
   const [state, setState] = useState({
     maNhom: GROUP_ID,
     taiKhoan: "",
@@ -23,6 +53,7 @@ export default function Register() {
 
   const [userType, setUserType] = useState(null);
   const [bookingInformation, setBookingInformation] = useState(null);
+  console.log({ userType, bookingInformation });
 
   const navigate = useNavigate();
 
@@ -71,37 +102,6 @@ export default function Register() {
       });
       navigate("/");
     }
-  };
-
-  const formItemLayout = {
-    labelCol: {
-      xs: {
-        span: 24,
-      },
-      sm: {
-        span: 8,
-      },
-    },
-    wrapperCol: {
-      xs: {
-        span: 24,
-      },
-      sm: {
-        span: 16,
-      },
-    },
-  };
-  const tailFormItemLayout = {
-    wrapperCol: {
-      xs: {
-        span: 24,
-        offset: 0,
-      },
-      sm: {
-        span: 16,
-        offset: 8,
-      },
-    },
   };
 
   const [form] = useForm();

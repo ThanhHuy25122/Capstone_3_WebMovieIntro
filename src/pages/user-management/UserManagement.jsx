@@ -1,19 +1,20 @@
 import React, { useState } from "react";
-import { Modal, notification, Table } from "antd";
+import { Modal } from "antd";
 import { useUserList } from "hooks/useUserList";
 import Search from "antd/es/input/Search";
-import { removeUserApi } from "services/user";
-import { CloseOutlined, EditOutlined, FormOutlined } from "@ant-design/icons";
+import { FormOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
+import UserTable from "./components/user-table/UserTable";
 
 export default function UserManagement() {
+  const [searchUserState, setSearchUserState] = useState([]);
   const [userList, getUserList] = useUserList();
   const navigate = useNavigate();
+
   const columns = [
     {
       title: "Full Name",
       dataIndex: "hoTen",
-      render: (text) => <a href="##">{text}</a>,
     },
     {
       title: "Username",
@@ -26,6 +27,7 @@ export default function UserManagement() {
     {
       title: "Phone Number",
       dataIndex: "soDT",
+      render: (text) => <a href={`tel:${text}`}>{text}</a>,
     },
     {
       title: "Email",
@@ -35,55 +37,7 @@ export default function UserManagement() {
       title: "Type",
       dataIndex: "maLoaiNguoiDung",
     },
-    {
-      title: "Actions",
-      render: (text) => {
-        const handleRemove = async () => {
-          try {
-            await removeUserApi(text.taiKhoan);
-            notification.success({ message: "Delete user successfully" });
-            getUserList();
-          } catch (error) {
-            notification.error({ message: error.response.data.content });
-          }
-        };
-
-        const handleConfirmRemove = () => {
-          Modal.confirm({
-            title: "Do you want to delete this user?",
-            onOk: handleRemove,
-          });
-        };
-
-        return (
-          <>
-            <EditOutlined
-              className="update-icon"
-              onClick={() =>
-                navigate(`/admin/user-management/edit/${text.taiKhoan}`)
-              }
-            />
-            <CloseOutlined
-              className="remove-icon"
-              onClick={handleConfirmRemove}
-            />
-          </>
-        );
-      },
-    },
   ];
-  const [searchUserState, setSearchUserState] = useState([]);
-
-  const UserSearch = ({ onSearch }) => {
-    return (
-      <Search
-        placeholder="input search text"
-        enterButton="Search"
-        size="large"
-        onSearch={onSearch}
-      />
-    );
-  };
 
   const handleSearchUser = (value) => {
     const filteredUsers = userList?.filter(
@@ -108,10 +62,9 @@ export default function UserManagement() {
         onClick={() => navigate("/admin/user-management/add")}
       />
       <p />
-      <UserSearch onSearch={handleSearchUser} />
+      <Search onSearch={handleSearchUser} />
       <p />
-
-      <Table columns={columns} dataSource={data} bordered />
+      <UserTable columns={columns} data={data} getUserList={getUserList} />
     </>
   );
 }

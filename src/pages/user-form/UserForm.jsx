@@ -1,9 +1,8 @@
 import { Button, Form, Input, notification, Radio, Switch } from "antd";
 import { GROUP_ID } from "../../constants";
 import { useEffect, useState } from "react";
-import { createUserApi } from "services/user";
+import { createUserApi, fetchUserApi } from "services/user";
 import { useNavigate, useParams } from "react-router-dom";
-import { fetchUserAccountApi } from "services/register";
 import { useForm } from "antd/es/form/Form";
 
 export default function UserForm() {
@@ -24,12 +23,12 @@ export default function UserForm() {
 
   useEffect(() => {
     if (params.userId) {
-      getUserAccoutData();
+      getUserAccountData();
     }
   }, [params.userId]);
 
-  const getUserAccoutData = async () => {
-    const result = await fetchUserAccountApi();
+  const getUserAccountData = async () => {
+    const result = await fetchUserApi(params.userId);
     const { hoTen, taiKhoan, matKhau, soDT, maLoaiNguoiDung, email } =
       result?.data?.content;
 

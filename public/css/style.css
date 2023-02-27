@@ -137,12 +137,7 @@ h3 {
   margin: 5px;
   background-color: white;
 }
-.list-button:hover {
-  color: white;
-  background-color: darkgray;
 
-  transition: all 0.4s;
-}
 .list-button:focus {
   outline: none;
 }
