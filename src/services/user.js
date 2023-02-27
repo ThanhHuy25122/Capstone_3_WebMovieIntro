@@ -3,14 +3,14 @@ import { GROUP_ID } from "../constants";
 
 export const fetchUserListApi = () => {
   return axiosRequest({
-    url: `/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=${"GP00"}`,
+    url: `/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=${GROUP_ID}`,
     method: "GET",
   });
 };
 
 export const createUserApi = (information) => {
   return axiosRequest({
-    url: `QuanLyNguoiDung/CapNhatThongTinNguoiDung`,
+    url: `QuanLyNguoiDung/ThemNguoiDung`,
     method: "POST",
     data: information,
   });

@@ -121,7 +121,7 @@ export default function MovieForm() {
       initialValues={{
         size: componentSize,
         tenPhim: "",
-        trailer: "",
+        trailer: "demo",
         moTa: "",
         maNhom: "",
         ngayKhoiChieu: "",

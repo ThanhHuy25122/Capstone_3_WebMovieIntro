@@ -204,12 +204,8 @@ export default function Register() {
           label="Username"
           rules={[
             {
-              defaultField: `/^S+$/`,
               required: true,
-              min: 8,
-              max: 12,
-              message: "Please input your username!",
-              whitespace: true,
+              message: "Không được để trống !",
             },
           ]}
         >
@@ -221,9 +217,13 @@ export default function Register() {
           onKeyPress={handleKeyPress}
           label="Password"
           rules={[
+            { required: true, message: "Không được để trống !" },
             {
-              required: true,
-              message: "Please input your password!",
+              pattern: new RegExp(
+                /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm
+              ),
+              message:
+                "Tối thiểu tám ký tự, ít nhất một chữ cái in hoa, một chữ cái thường, một chữ số.",
             },
           ]}
           hasFeedback
@@ -236,13 +236,10 @@ export default function Register() {
           label="E-mail"
           onKeyPress={handleKeyPress}
           rules={[
+            { required: true, message: "Không được để trống !" },
             {
-              type: "email",
-              message: "The input is not valid E-mail!",
-            },
-            {
-              required: true,
-              message: "Please input your E-mail!",
+              pattern: new RegExp(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g),
+              message: " Phải đúng định dạng email abc@exp.com",
             },
           ]}
         >
