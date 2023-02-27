@@ -25,7 +25,7 @@ export const useMovieList = () => {
 
     setTimeout(() => {
       setLoadingState({ isLoading: false });
-    }, 2000);
+    }, 900);
   };
   return [movieList, getMovieList];
 };
