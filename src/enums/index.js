@@ -15,3 +15,8 @@ export const AdminLayoutItem = {
   movieManagement: ["movie-management", "Movie Management"],
   userManagament: ["user-management", "User Managament"],
 };
+
+export const Pagination = {
+  currentDefault: 1,
+  size: 10, // number of items per page
+};

@@ -1,38 +1,16 @@
 import React, { useState } from "react";
 import { useMovieList } from "../../hooks/useMovieList";
-import { notification, Table } from "antd";
+import { notification } from "antd";
 import { formatDate } from "utils";
 import { useNavigate } from "react-router-dom";
-import { deleteMovieApi } from "services/movie";
-import {
-  CloseOutlined,
-  EditOutlined,
-  FormOutlined,
-  CalendarOutlined,
-} from "@ant-design/icons";
+import { FormOutlined } from "@ant-design/icons";
 import SearchMovie from "./components/search-movie/SearchMovie";
+import MovieTable from "./components/movie-table/MovieTable";
 
 export default function MovieManagement() {
   const [movieList, getMovieList] = useMovieList();
-  const [searchedMovieList, setSearchedMovieList] = useState([]);
+  const [searchMovieList, setSearchMovieList] = useState([]);
   const navigate = useNavigate();
-
-  const handleDeleteMovie = async (maPhim) => {
-    try {
-      if (window.confirm("Would you like to remove this film?")) {
-        await deleteMovieApi(maPhim);
-
-        notification.success({
-          message: " Xóa phim thành công",
-        });
-        getMovieList();
-      }
-    } catch (error) {
-      notification.error({
-        message: error.response?.data?.content || error.message,
-      });
-    }
-  };
 
   const columns = [
     {
@@ -56,47 +34,19 @@ export default function MovieManagement() {
       dataIndex: "danhGia",
       key: "danhGia",
     },
-    {
-      title: "Actions",
-      key: "actions",
-      render: (text) => (
-        <div style={{ display: "flex" }}>
-          <EditOutlined
-            title="Edit"
-            className="update-icon"
-            onClick={() =>
-              navigate(`/admin/movie-management/edit/${text.maPhim}`)
-            }
-          />
-          <CloseOutlined
-            title="Delete"
-            className="remove-icon"
-            onClick={() => handleDeleteMovie(text.maPhim)}
-          />
-          <CalendarOutlined
-            title="Add Showtime"
-            className="add-icon"
-            style={{
-              fontSize: "1.3rem",
-            }}
-            onClick={() =>
-              navigate(`/admin/showtime-management/add/${text.maPhim}`)
-            }
-          />
-        </div>
-      ),
-    },
   ];
 
-  const handleSearchMovie = (value) => {
+  const handleSearch = (value) => {
     const filteredMovies = movieList.filter((movie) =>
       movie.tenPhim.toLowerCase().includes(value.toLowerCase())
     );
     if (filteredMovies.length <= 0) {
       notification.info("No search results");
     }
-    setSearchedMovieList(filteredMovies);
+    setSearchMovieList(filteredMovies);
   };
+
+  const data = searchMovieList.length > 0 ? searchMovieList : movieList;
 
   return (
     <div>
@@ -105,12 +55,16 @@ export default function MovieManagement() {
         className="add-icon"
         onClick={() => navigate("/admin/movie-management/add")}
         type="primary"
-        style={{
-          marginBottom: "0.6rem",
-        }}
       />
-      <SearchMovie movieList={movieList} />
-      <Table columns={columns} dataSource={movieList} />
+      <p />
+      <SearchMovie onSearch={handleSearch} />
+      <p />
+      <MovieTable
+        columns={columns}
+        data={data}
+        getMovieList={getMovieList}
+        setSearchMovieList={setSearchMovieList}
+      />
     </div>
   );
 }

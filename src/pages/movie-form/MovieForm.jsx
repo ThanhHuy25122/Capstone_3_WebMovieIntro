@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import {
   Button,
@@ -24,7 +25,6 @@ export default function MovieForm() {
   const params = useParams();
   const [file, setFile] = useState();
   const [imageReview, setImageReview] = useState();
-  /* eslint-disable react-hooks/exhaustive-deps */
   const [componentSize, setComponentSize] = useState("default");
   const navigate = useNavigate();
   const onFormLayoutChange = ({ size }) => {
@@ -38,7 +38,14 @@ export default function MovieForm() {
   }, [params.movieId]);
 
   const getMovieDetail = async () => {
-    const result = await fetchMovieDetailApi(params.movieId);
+    let result;
+    try {
+      result = await fetchMovieDetailApi(params.movieId);
+    } catch ({ response }) {
+      notification.error({
+        message: response.data.content || " Lỗi kết nối dữ liệu !",
+      });
+    }
 
     const {
       tenPhim,
@@ -81,18 +88,27 @@ export default function MovieForm() {
     formData.append("danhGia", values.danhGia);
     file && formData.append("File", file, file.name);
 
-    if (params.movieId) {
-      formData.append("maPhim", params.movieId);
-      await editMovieApi(formData);
-    } else {
-      await addMovieApi(formData);
+    try {
+      if (params.movieId) {
+        formData.append("maPhim", params.movieId);
+        await editMovieApi(formData);
+
+        notification.success({
+          message: "Sửa phim thành công",
+        });
+      } else {
+        await addMovieApi(formData);
+        notification.success({
+          message: "Thêm phim thành công",
+        });
+      }
+
+      navigate("/admin/movie-management/");
+    } catch ({ response }) {
+      notification.error({
+        message: response.data.content || " Có lỗi khi cập nhật !",
+      });
     }
-
-    notification.success({
-      message: params.id ? "Sửa phim thành công" : "Thêm phim thành công",
-    });
-
-    navigate("/admin/movie-management/");
   };
 
   const handleFile = (event) => {

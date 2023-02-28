@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
+import { Modal } from "antd";
 import { LoadingContext } from "contexts/loading/LoadingContext";
 import { useContext, useEffect, useState } from "react";
 import { fetchMovieListApi } from "../services/movie";
@@ -19,8 +22,10 @@ export const useMovieList = () => {
           return { ...user, key: idx };
         })
       );
-    } catch (error) {
-      console.error(error);
+    } catch ({ response }) {
+      Modal.error({
+        title: response.data.content || "Lỗi khi lấy dữ liệu",
+      });
     }
 
     setTimeout(() => {

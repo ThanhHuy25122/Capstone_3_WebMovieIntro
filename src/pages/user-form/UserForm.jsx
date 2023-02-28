@@ -1,3 +1,5 @@
+/* eslint-disable no-useless-escape */
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Button, Form, Input, notification, Radio, Switch } from "antd";
 import { GROUP_ID } from "../../constants";
 import { useEffect, useState } from "react";
