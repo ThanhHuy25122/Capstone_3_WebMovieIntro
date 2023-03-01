@@ -1,3 +1,4 @@
+import { Modal } from "antd";
 import { LoadingContext } from "contexts/loading/LoadingContext";
 import { useContext, useEffect, useState } from "react";
 import { fetchUserListApi } from "services/user";
@@ -20,8 +21,11 @@ export const useUserList = () => {
           return { ...user, key: idx };
         })
       );
-    } catch (error) {
-      console.error(error);
+    } catch ({ response }) {
+      Modal.error({
+        title:
+          response.data.content || "Xảy ra lỗi khi lấy dữ liệu từ database",
+      });
     }
 
     setTimeout(() => {

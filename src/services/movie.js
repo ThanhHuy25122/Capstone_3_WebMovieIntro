@@ -1,3 +1,4 @@
+import { Pagination } from "enums";
 import { axiosRequest } from "../configs/axios.config";
 import { GROUP_ID } from "../constants";
 export const fetchMovieListApi = () => {
@@ -17,6 +18,15 @@ export const fetchMovieDetailApi = (id) => {
 export const fetchMovieCarouselListApi = () => {
   return axiosRequest({
     url: `/QuanLyPhim/LayDanhSachBanner`,
+    method: "GET",
+  });
+};
+
+export const fetchSearchMovieApi = (keyword, currentPage) => {
+  return axiosRequest({
+    url: `/QuanLyPhim/LayDanhSachPhimPhanTrang?maNhom=${GROUP_ID}${
+      keyword === "" ? "" : `&tenPhim=${keyword}`
+    }${`&soTrang=${currentPage}`}&soPhanTuTrenTrang=${Pagination.size}`,
     method: "GET",
   });
 };

@@ -1,4 +1,4 @@
-import { notification, Table } from "antd";
+import { Modal, notification, Table } from "antd";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { deleteMovieApi } from "services/movie";
@@ -7,30 +7,37 @@ import {
   EditOutlined,
   CalendarOutlined,
 } from "@ant-design/icons";
+import { Pagination } from "enums";
 
 export default function MovieTable({
   columns,
   data,
   getMovieList,
   setSearchMovieList,
+  current,
+  setCurrent,
+  totalMovie,
 }) {
   const navigate = useNavigate();
-  const handleDelete = async (movieId) => {
-    try {
-      if (window.confirm("Would you like to remove this film?")) {
-        await deleteMovieApi(movieId);
 
-        notification.success({
-          message: " Xóa phim thành công",
-        });
-        getMovieList();
-        setSearchMovieList([]);
-      }
-    } catch (error) {
+  const handleRemove = async (movieId) => {
+    try {
+      await deleteMovieApi(movieId);
+      notification.success({ message: "Delete movie successfully" });
+      getMovieList();
+      setSearchMovieList([]);
+    } catch ({ response }) {
       notification.error({
-        message: error.response?.data?.content || error.message,
+        message: response.data.content || "Error deleting!",
       });
     }
+  };
+
+  const handleConfirmRemove = (movieId) => {
+    Modal.confirm({
+      title: "Do you want to delete this movie?",
+      onOk: () => handleRemove(movieId),
+    });
   };
 
   const renderActions = (movieId) => {
@@ -45,7 +52,7 @@ export default function MovieTable({
         key="delete"
         title="Delete"
         className="remove-icon"
-        onClick={() => handleDelete(movieId)}
+        onClick={() => handleConfirmRemove(movieId)}
       />,
       <CalendarOutlined
         key="addShowtime"
@@ -58,6 +65,19 @@ export default function MovieTable({
       />,
     ];
     return actions;
+  };
+
+  const onChange = (page) => {
+    setCurrent(page);
+  };
+
+  const pagination = {
+    currentDefault: Pagination.currentDefault,
+    current: current,
+    pageSize: Pagination.size,
+    onChange: (page) => onChange(page),
+    pageSizeOptions: ["10"],
+    total: totalMovie,
   };
   return (
     <Table
@@ -74,6 +94,9 @@ export default function MovieTable({
         },
       ]}
       dataSource={data}
+      bordered
+      rowKey={"key"}
+      pagination={pagination}
     />
   );
 }

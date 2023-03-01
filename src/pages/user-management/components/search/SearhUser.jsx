@@ -4,12 +4,20 @@ import Search from "antd/es/input/Search";
 
 export default function SearchUser({ setKeyword }) {
   const handleSearch = async (value) => {
-    console.log(value);
     if (!value && value !== "") {
       Modal.warning({ title: "Please enter a search term" });
       return;
     }
     await setKeyword(!value ? "" : encodeURIComponent(value));
+  };
+
+  const handleKeyPress = (event) => {
+    if (event.key === " ") {
+      event.preventDefault();
+      Modal.warning({
+        title: "Tài khoản không có dấu cách",
+      });
+    }
   };
 
   return (
