@@ -11,7 +11,6 @@ body {
   background-image: url(../images/Banner/banner.jpg);
   background-size: cover;
   background-position: center;
-  filter: grayscale(50%);
 }
 
 div.ant-carousel {
