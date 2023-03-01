@@ -46,12 +46,24 @@ export default function Showtimes() {
           {element?.cumRapChieu?.map((ele) => {
             return (
               <div key={ele.maCumRap} className="row mb-5">
-                <div className="col-1">
-                  <img className="img-fluid rounded" src={element.logo} />
-                </div>
-                <div className="col-11 pl-0">
-                  <h5>{ele.tenCumRap}</h5>
-                  <span className="text-muted">{ele.diaChi}</span>
+                <div className="row col-12 bg-dark">
+                  <div
+                    className="col-1"
+                    style={{
+                      lineHeight: "56px",
+                    }}
+                  >
+                    <img
+                      className="img-fluid rounded"
+                      style={{}}
+                      src={element.logo}
+                      alt=""
+                    />
+                  </div>
+                  <div className="col-11 pl-0">
+                    <h5>{ele.tenCumRap}</h5>
+                    <span className="text-muted">{ele.diaChi}</span>
+                  </div>
                 </div>
                 <div className="col-12">
                   <div className="row">
@@ -59,7 +71,7 @@ export default function Showtimes() {
                       return (
                         <div key={e.maLichChieu} className="col-3">
                           <Link to={`/booking/${e?.maLichChieu}`}>
-                            {formatDate(e.ngayChieuGioChieu)}
+                            {`> ` + formatDate(e.ngayChieuGioChieu)}
                           </Link>
                         </div>
                       );
@@ -76,7 +88,7 @@ export default function Showtimes() {
 
   return (
     <>
-      <div className="col-12 mt-5">
+      <div className="col-12 mt-5 text-light">
         <div className="row">
           <div className="col-3">
             <div
@@ -88,7 +100,12 @@ export default function Showtimes() {
               {renderTabs()}
             </div>
           </div>
-          <div className="col-9">
+          <div
+            className="col-9"
+            style={{
+              overflow: "hidden",
+            }}
+          >
             <div className="tab-content" id="v-pills-tabContent">
               {renderTabContent()}
             </div>

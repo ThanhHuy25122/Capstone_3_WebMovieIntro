@@ -3,8 +3,13 @@ import { useResponsive } from "../../hooks/useResposive";
 import "./style.scss";
 export default function Footer() {
   return (
-    <div className="container">
-      <div className="container-fluid justify-content-center">
+    <div
+      className="container"
+      style={{
+        color: "white",
+      }}
+    >
+      <div className=" justify-content-center">
         <hr className="mx-0 px-0 bg-light" />
         <footer>
           <div className="row justify-content-around mb-0  pb-0 ">
@@ -39,7 +44,7 @@ export default function Footer() {
                   </small>
                 </div>
                 <div className="col-md-3 col-12 my-sm-0 mt-5">
-                  <ul className="list-unstyled">
+                  <ul className="">
                     <li className="mt-md-3 mt-4">GIỚI THIỆU</li>
                     <li>VỀ CHÚNG TÔI</li>
                     <li>THOẢ THUẬN SỬ DỤNG</li>
@@ -48,7 +53,7 @@ export default function Footer() {
                   </ul>
                 </div>
                 <div className="col-md-3 col-12 my-sm-0 mt-5">
-                  <ul className="list-unstyled">
+                  <ul className="">
                     <li className="mt-md-3 mt-4">GÓC ĐIỆN ẢNH</li>
                     <li>THỂ LOẠI PHIM</li>
                     <li>BÌNH LUẬN PHIM</li>
@@ -57,7 +62,7 @@ export default function Footer() {
                   </ul>
                 </div>
                 <div className="col-xl-auto col-md-3 col-12 my-sm-0 mt-5">
-                  <ul className="list-unstyled">
+                  <ul className="">
                     <li className="mt-md-3 mt-4">HỖ TRỢ</li>
                     <li>GÓP Ý</li>
                     <li>SALE & SERVICER</li>
