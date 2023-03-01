@@ -4,30 +4,15 @@ body {
   font-family: "Times New Roman", Times, serif;
 }
 
-.banner {
+#root {
   width: 100%;
   height: 100%;
   background-attachment: fixed;
   background-image: url(../images/Banner/banner.jpg);
   background-size: cover;
-  /* background-clip: unset; */
   background-position: center;
-  position: relative;
+  filter: grayscale(50%);
 }
-
-.banner::before {
-  content: "";
-  background-color: rgba(0, 0, 0, 0.5);
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-
-/* div.card-img {
-}
-
-div.card-img img {
-} */
 
 div.ant-carousel {
   position: relative;
