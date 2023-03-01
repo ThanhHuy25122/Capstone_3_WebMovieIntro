@@ -1,6 +1,7 @@
-import React, { useRef } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useMovieList } from "../../../../hooks/useMovieList";
+import "./index.scss";
 
 export default function MovieList() {
   const [movieList] = useMovieList();
@@ -42,62 +43,9 @@ export default function MovieList() {
     });
   };
 
-  const ref = useRef({});
-
-  const next = () => {
-    ref.current.slickNext();
-  };
-
-  const previous = () => {
-    ref.current.slickPrev();
-  };
-  const settings = {
-    className: "section-outstanding__slider",
-    slidesToShow: 4,
-    slidesToScroll: 4,
-    infinite: false,
-    rows: 2,
-    accessibility: true,
-    adaptiveHeight: false,
-    responsive: [
-      {
-        breakpoint: 1200,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          rows: 2,
-          adaptiveHeight: false,
-        },
-      },
-      {
-        breakpoint: 992,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          rows: 2,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          rows: 1,
-        },
-      },
-      {
-        breakpoint: 576,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          rows: 1,
-        },
-      },
-    ],
-  };
   return (
     <div>
-      <div id="movieList" className="title">
+      <div className="title">
         <h3>Danh Sách Phim</h3>
       </div>
 

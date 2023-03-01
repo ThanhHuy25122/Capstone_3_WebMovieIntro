@@ -23,7 +23,7 @@ export default function Header() {
       <nav
         className="navbar navbar-expand-sm navbar-light header-bg "
         style={{
-          boxShadow: `0px 0px 120px 14px rgba(255,255,255,0.79)`,
+          boxShadow: "rgb(255 255 255 / 48%) 0px 0px 120px 4px",
         }}
       >
         <NavLink

@@ -10,16 +10,6 @@ export default function SearchUser({ setKeyword }) {
     }
     await setKeyword(!value ? "" : encodeURIComponent(value));
   };
-
-  const handleKeyPress = (event) => {
-    if (event.key === " ") {
-      event.preventDefault();
-      Modal.warning({
-        title: "Tài khoản không có dấu cách",
-      });
-    }
-  };
-
   return (
     <>
       <Search
