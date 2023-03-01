@@ -43,7 +43,8 @@ export default function Login() {
     <div
       className="w-25 mx-auto py-5"
       style={{
-        minHeight: "calc(100vh - 180px)",
+        minHeight: "calc(100vh )",
+        color: "white",
       }}
     >
       <form onSubmit={handleSubmit}>
@@ -53,7 +54,7 @@ export default function Login() {
             onChange={handleChange}
             type="text"
             name="taiKhoan"
-            className="form-control"
+            className="form-control border-secondary"
           />
         </div>
         <div className="form-group">
@@ -62,7 +63,7 @@ export default function Login() {
             onChange={handleChange}
             type="password"
             name="matKhau"
-            className="form-control "
+            className="form-control border-secondary"
           />
         </div>
         <button className="btn btn-primary">LOGIN</button>

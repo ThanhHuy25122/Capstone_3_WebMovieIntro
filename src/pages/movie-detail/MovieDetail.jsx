@@ -6,11 +6,17 @@ export default function MovieDetail() {
   return (
     <>
       <div
-        className="py-5 mt-5"
+        className="my-5"
         style={{
           minHeight: "calc(100vh - 180px)",
         }}
       >
+        <div>
+          <div className="title my-5">
+            <h3>Chi tiết phim</h3>
+          </div>
+        </div>
+
         <div className="container">
           <div className="row">
             <Detail />

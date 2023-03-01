@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { setUserInfoAction } from "../../store/actions/userAction";
@@ -16,14 +16,38 @@ export default function Header() {
     navigate("/");
   };
 
-  console.log(userState);
+  const [isFixed, setIsFixed] = useState(false);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY;
+    if (currentScrollY > 20) {
+      setIsFixed(true);
+    } else {
+      setIsFixed(false);
+    }
+  };
 
   return (
-    <div className="container">
+    <div
+      className="container"
+      style={{
+        position: isFixed ? "fixed" : "static",
+        left: 0,
+        right: 0,
+        top: 0,
+        zIndex: 1000,
+      }}
+    >
       <nav
         className="navbar navbar-expand-sm navbar-light header-bg "
         style={{
           boxShadow: "rgb(255 255 255 / 48%) 0px 0px 120px 4px",
+          background: isFixed ? "rgb(40, 167, 69)" : "rgba(40, 167, 69,.5)",
         }}
       >
         <NavLink
@@ -63,8 +87,8 @@ export default function Header() {
                 ) : (
                   <>
                     <button
-                      className="btn btn-outline-info my-2 my-sm-0 mr-2"
-                      onClick={() => navigate("/admin")}
+                      className="btn btn-outline-light my-2 my-sm-0 mr-2"
+                      onClick={() => navigate("/admin/movie-management")}
                     >
                       Admin
                     </button>
@@ -78,14 +102,14 @@ export default function Header() {
             ) : (
               <>
                 <button
-                  className="btn btn-outline-info my-2 my-sm-0 mr-2"
+                  className="btn btn-warning my-2 my-sm-0 mr-2"
                   type="summit"
                   onClick={() => navigate("/register")}
                 >
                   Register
                 </button>
                 <button
-                  className="btn btn-outline-success my-2 my-sm-0"
+                  className="btn btn-primary my-2 my-sm-0"
                   onClick={() => navigate("/login")}
                 >
                   Login
