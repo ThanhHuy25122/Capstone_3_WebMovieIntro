@@ -20,8 +20,17 @@ export default function Header() {
 
   return (
     <div className="container">
-      <nav className="navbar navbar-expand-sm navbar-light header-bg ">
-        <NavLink style={{ fontSize: "30px" }} className="navbar-brand" to={"/"}>
+      <nav
+        className="navbar navbar-expand-sm navbar-light header-bg "
+        style={{
+          boxShadow: `0px 0px 120px 14px rgba(255,255,255,0.79)`,
+        }}
+      >
+        <NavLink
+          style={{ fontSize: "30px" }}
+          className="navbar-brand text-light"
+          to={"/"}
+        >
           <i style={{ fontSize: "2rem" }} className="las la-star-half-alt"></i>
           MOVIE STAR
         </NavLink>
@@ -37,18 +46,6 @@ export default function Header() {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="collapsibleNavId">
-          <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li className="nav-item  ml-5">
-              <NavLink to="/">Trang chủ</NavLink>
-            </li>
-            <li className="nav-item  ml-4">
-              <a href="#movieList">Danh sách phim</a>
-            </li>
-            <li className="nav-item  ml-4">
-              <a href="#new">Tin tức</a>
-            </li>
-          </ul>
-
           <div className="ml-auto">
             {userInfo ? (
               <>

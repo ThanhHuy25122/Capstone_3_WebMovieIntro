@@ -46,14 +46,6 @@ export default function UserManagement() {
         page: current,
       });
       const { totalCount, items, count } = result.data.content;
-      if (count === 0) {
-        setTimeout(() => setLoadingState({ isLoading: false }), 500);
-        notification.warning({
-          message:
-            "Không có tài khoản bạn tìm kiếm " + decodeURIComponent(keyword),
-        });
-        return;
-      }
       if (items.length > 0) {
         setSearchUserState(
           items.map((ele, idx) => {
@@ -65,14 +57,20 @@ export default function UserManagement() {
         );
         setTotalUser(totalCount);
       }
+      if (count === 0) {
+        notification.warning({
+          message:
+            "Không có tài khoản bạn tìm kiếm " + decodeURIComponent(keyword),
+        });
+        return;
+      }
     } catch ({ response }) {
       Modal.info({
         title: response.data.content || "Lỗi khi lấy dữ liệu",
       });
+    } finally {
+      setTimeout(() => setLoadingState({ isLoading: false }), 500);
     }
-    setTimeout(() => setLoadingState({ isLoading: false }), 500);
-
-    // Chưa làm phần currentPage and ......
   };
 
   const columns = [
@@ -113,11 +111,7 @@ export default function UserManagement() {
         onClick={() => navigate("/admin/user-management/add")}
       />
       <p />
-      <SearchUser
-        onSearch={handleSearchQuery}
-        setCurrent={setCurrent}
-        setKeyword={setKeyword}
-      />
+      <SearchUser setKeyword={setKeyword} />
       <p />
       <UserTable
         columns={columns}
