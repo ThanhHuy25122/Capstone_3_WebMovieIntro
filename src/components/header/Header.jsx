@@ -3,10 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { setUserInfoAction } from "../../store/actions/userAction";
 import { MaLoaiNguoiDung } from "enums";
+import { useResponsive } from "hooks/useResposive";
 
 export default function Header() {
   const userState = useSelector((state) => state.userReducer);
   const { userInfo } = userState;
+  const windowSize = useResponsive();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -34,20 +36,21 @@ export default function Header() {
 
   return (
     <div
-      className="container"
+      className={windowSize.width > 768 && "container"}
       style={{
         position: isFixed ? "fixed" : "static",
         left: 0,
         right: 0,
         top: 0,
         zIndex: 1000,
+        padding: windowSize.width > 768 && "0 15px",
       }}
     >
       <nav
         className="navbar navbar-expand-sm navbar-light header-bg "
         style={{
           boxShadow: "rgb(255 255 255 / 48%) 0px 0px 120px 4px",
-          background: isFixed ? "rgb(40, 167, 69)" : "rgba(40, 167, 69,.5)",
+          background: isFixed ? "rgb(40, 167, 69)" : "rgba(40, 167, 69,.7)",
         }}
       >
         <NavLink
@@ -87,7 +90,7 @@ export default function Header() {
                 ) : (
                   <>
                     <button
-                      className="btn btn-outline-light my-2 my-sm-0 mr-2"
+                      className="btn btn-light my-2 my-sm-0 mr-2"
                       onClick={() => navigate("/admin/movie-management")}
                     >
                       Admin

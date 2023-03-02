@@ -68,15 +68,27 @@ export default function Detail() {
               </p>
             </div>
 
-            <iframe
-              width={560}
-              height={315}
-              src={movieDetail.trailer}
-              title="YouTube video player"
-              frameBorder={0}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            />
+            <div className="title">
+              <h3>Trailer</h3>
+            </div>
+            <div
+              style={{
+                width: 560,
+                height: `calc(560px * 9 / 16)`,
+                textAlign: "center",
+                backgroundColor: "rgba(255, 255, 255, .7)",
+                marginTop: 20,
+              }}
+            >
+              <p
+                style={{
+                  lineHeight: "200px",
+                  color: "black",
+                }}
+              >
+                Trailer đang phát triển
+              </p>
+            </div>
           </div>
         </div>
       </div>
