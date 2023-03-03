@@ -14,15 +14,6 @@ body {
     color: #000 !important
 }
 
-.card {
-    color: #757575 !important;
-    background-color: #fff !important;
-    align-items: center !important;
-    background: url('https://i.imgur.com/9djv5sH.jpg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: right calc(110px + (150 - 110) * ((100vw - 360px) / (1600 - 360))) bottom !important
-}
 
 h2 {
     font-size: calc(25px + (45 - 25) * ((100vw - 360px) / (1600 - 360))) !important
@@ -37,3 +28,30 @@ h2 {
     font-size: 21px;
     margin: 5px 10px 5px 10px !important
 }
+.footer-design{
+    h5{
+        font-size: 36px;
+    }
+    color: #fff;
+    li{
+        color: #fff;
+    }
+}
+@media only screen and (max-width:768px) {
+    .footer-design{
+        h5{
+            font-size: 36px;
+           }
+        li{
+            font-size: 12px;
+        }
+    }
+  }
+  @media only screen and (max-width:576px) {
+    .footer-design{
+       h5{
+        font-size: 36px;
+       }
+       
+    }
+  }

@@ -5,13 +5,13 @@ import Router from "./routes/Router";
 
 function App() {
   return (
-    <>
+    <div className="banner">
       <BrowserRouter>
         <LoadingProvider>
           <Router />
         </LoadingProvider>
       </BrowserRouter>
-    </>
+    </div>
   );
 }
 

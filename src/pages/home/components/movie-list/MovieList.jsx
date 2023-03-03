@@ -3,10 +3,12 @@ import { useNavigate } from "react-router-dom";
 import Slider from "react-slick";
 import { useMovieList } from "../../../../hooks/useMovieList";
 import { useResponsive } from "../../../../hooks/useResposive";
-import { Tabs } from "antd";
+
 import "./index.scss";
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+
 export default function MovieList() {
   const view = useResponsive();
   const [movieList] = useMovieList();
@@ -52,9 +54,7 @@ export default function MovieList() {
       );
     });
   };
-
   const ref = useRef({});
-
   const next = () => {
     ref.current.slickNext();
     console.log("hehe");
@@ -108,36 +108,23 @@ export default function MovieList() {
       },
     ],
   };
+
   return (
     <div>
       <div id="movieList" className="title">
-        <h3>Danh Sách Phim</h3>
+        <h3>DANH SÁCH PHIM</h3>
       </div>
-
-      <header>
-        <Tabs>
-          <Tabs.TabPane tab="Phim sắp chiếu" key="tab1">
-            <Slider ref={ref} {...settings}>
-              {renderMovieList()}
-            </Slider>
-            <div style={{ textAlign: "center" }}>
-              <button className="list-button" onClick={() => previous()}>
-                <i className="las la-angle-left"></i>
-              </button>
-              <button className="list-button" onClick={() => next()}>
-                <i className="las la-angle-right"></i>
-              </button>
-            </div>
-          </Tabs.TabPane>
-          <Tabs.TabPane tab="Phim Sex Châu phi" key="tab2">
-            <div> This is ..cl.</div>
-          </Tabs.TabPane>
-        </Tabs>
-      </header>
-
-      {/* <div className="row mt-3 mx-auto pl-3 pr-3">
-       
-      </div> */}
+      <Slider ref={ref} {...settings}>
+        {renderMovieList()}
+      </Slider>
+      <div style={{ textAlign: "center" }}>
+        <button className="list-button" onClick={() => previous()}>
+          <i className="las la-angle-left"></i>
+        </button>
+        <button className="list-button" onClick={() => next()}>
+          <i className="las la-angle-right"></i>
+        </button>
+      </div>
     </div>
   );
 }

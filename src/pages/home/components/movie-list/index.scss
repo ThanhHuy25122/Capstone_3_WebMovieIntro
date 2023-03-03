@@ -1,7 +1,7 @@
 div {
   div.title {
     display: block;
-    padding: 12px;
+    padding: 20px;
     position: relative;
     text-align: center;
     &::before {
@@ -22,12 +22,30 @@ div {
       height: 1px;
       background-color: #fff;
 
-      left: 50%;
+      // left: 50%;
       transform: translateX(-50%);
     }
 
     h3 {
       color: #fff;
+      margin-top: 5px;
     }
   }
+  .list-button {
+  border-radius: 50%;
+  border: none;
+  height: 45px;
+  width: 45px;
+  margin: 5px;
+  background-color: white;
+  &:hover{
+    color: white;
+    background-color: darkgray;
+  
+    transition: all 0.4s;
+  }
+  &:focus{
+    outline: none;
+  }
+}
 }

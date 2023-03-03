@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { fetchMovieShowtimesApi } from "../../../../services/cinema";
 import { formatDate } from "../../../../utils";
-
+import "./style.scss";
 export default function Showtimes() {
   const [movieShowtimes, setMovieShowtimes] = useState();
 
@@ -51,7 +51,7 @@ export default function Showtimes() {
                 </div>
                 <div className="col-11 pl-0">
                   <h5>{ele.tenCumRap}</h5>
-                  <span className="text-muted">{ele.diaChi}</span>
+                  <span className="text-light">{ele.diaChi}</span>
                 </div>
                 <div className="col-12">
                   <div className="row">
@@ -75,26 +75,24 @@ export default function Showtimes() {
   };
 
   return (
-    <>
-      <div className="col-12 mt-5">
-        <div className="row">
-          <div className="col-3">
-            <div
-              className="nav flex-column nav-pills"
-              id="v-pills-tab"
-              role="tablist"
-              aria-orientation="vertical"
-            >
-              {renderTabs()}
-            </div>
+    <div className="col-12 mt-5 show-time">
+      <div className="row">
+        <div className="col-3">
+          <div
+            className="nav flex-column nav-pills"
+            id="v-pills-tab"
+            role="tablist"
+            aria-orientation="vertical"
+          >
+            {renderTabs()}
           </div>
-          <div className="col-9">
-            <div className="tab-content" id="v-pills-tabContent">
-              {renderTabContent()}
-            </div>
+        </div>
+        <div className="col-9">
+          <div className="tab-content" id="v-pills-tabContent">
+            {renderTabContent()}
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

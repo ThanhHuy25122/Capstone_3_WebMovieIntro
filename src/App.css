@@ -36,3 +36,150 @@
     transform: rotate(360deg);
   }
 }
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&display=swap");
+
+body {
+  font-family: "Times New Roman", Times, serif;
+}
+
+.container {
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+}
+
+.container-fluid {
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+}
+
+
+/* div.card-img {
+}
+
+div.card-img img {
+} */
+
+div.ant-carousel {
+  position: relative;
+  z-index: 1;
+}
+div.ant-carousel::before {
+  content: "";
+  left: -5px;
+  width: 15%;
+  height: 100%;
+  position: absolute;
+  z-index: 2;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+div.ant-carousel::after {
+  content: "";
+  right: -5px;
+  top: 0;
+  width: 15%;
+  height: 100%;
+  position: absolute;
+  z-index: 3;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(0, 0, 0, 1) 100%
+  );
+}
+
+div.movie-card {
+  cursor: pointer;
+}
+
+div.card-body:not(:hover) {
+  background-color: white;
+  display: flex;
+  /* position: relative; */
+  /* bottom: calc(0px + 100%); */
+  flex-direction: column;
+  color: white;
+  width: 100%;
+  height: auto;
+  align-items: center;
+  font-size: x-large;
+
+  transition: all 0.4s;
+}
+
+div.movie-card:hover div.card-body {
+  transition: all 0.4s;
+  background-color: #6f7780c8;
+  display: flex;
+  position: relative;
+  bottom: calc(0px + 100%);
+  flex-direction: column;
+  color: white;
+  width: 100%;
+  height: auto;
+  align-items: center;
+  bottom: 0px;
+  z-index: 2;
+  transform: translateY(-100%);
+  transition: all 0.4s;
+}
+
+/* div.card-body::after {
+  opacity: 0;
+  transition: all 0.4s;
+  
+} */
+
+div.movie-card:hover div.card-body::after {
+  content: "";
+  position: absolute;
+  /* background-color: black; */
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  z-index: 1;
+}
+/* HEADER */
+.las {
+  font-size: 1.5rem;
+}
+
+
+/* h3 {
+  color: white;
+} */
+.home-css:hover{
+  color: red !important;
+  transition: ease-in-out 0.4s;
+  text-decoration: none !important;
+}
+
+
+
+.slick-initialized .slick-slide{
+  padding: 0 10px;
+}
+/* movie-detail */
+.text-detail{
+  color: rgb(149, 154, 160);
+}
+.texttime-detail{
+  color:#007bff !important;
+}
+
+
+.banner {
+  width: 100%;
+  height: 100%;
+  background-attachment: fixed;
+  background-image: url(../public/images/Banner/banner.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+
