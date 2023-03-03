@@ -12,6 +12,12 @@ export default function Booking() {
   const params = useParams();
   const navigate = useNavigate();
 
+  const screen = {
+    borderTop: "1px solid white",
+    boxShadow:
+      "rgba(240, 234, 170, 0.4) 0px 5px, rgba(240, 234, 170, 0.3) 0px 10px, rgba(240, 234, 170, 0.2) 0px 15px, rgba(240, 234, 170, 0.1) 0px 20px, rgba(240, 234, 170, 0.05) 0px 25px",
+  };
+
   useEffect(() => {
     getTicketDetail();
   }, []);
@@ -73,25 +79,34 @@ export default function Booking() {
       }}
     >
       <div className="row">
-        <div className="col-8 mb-4">
-          <div style={{ width: "95%" }} className="mx-auto">
-            <div className="mr-1 mb-1 d-inline-block p-2 rounded text-white bg-secondary">
-              Seats are booked
-            </div>
-            <div className="mr-1 mb-1 d-inline-block p-2 rounded text-white bg-dark">
-              Seats not booked
-            </div>
-            <div className="mr-1 mb-1 d-inline-block p-2 rounded text-white bg-primary">
-              Seats are being booked
-            </div>
-            <div className="mr-1 mb-1 d-inline-block p-2 rounded text-white bg-warning">
-              VIP seats
-            </div>
-          </div>
-        </div>
-        <div className="col-8">
+        <div className="col-8 mb-5" style={screen}></div>
+        <div className=" col-8">
           {renderSeats()}
           <div style={{ width: "95%" }} className="mx-auto"></div>
+          <div className="w-100 mt-4 mx-auto">
+            <div
+              style={{
+                width: "95%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+              className="mx-auto"
+            >
+              <div className="mr-1 mb-1 d-inline-block p-2 rounded text-white bg-secondary">
+                Seats are booked
+              </div>
+              <div className="mr-1 mb-1 d-inline-block p-2 rounded text-white bg-dark">
+                Seats not booked
+              </div>
+              <div className="mr-1 mb-1 d-inline-block p-2 rounded text-white bg-primary">
+                Seats are being booked
+              </div>
+              <div className="mr-1 mb-1 d-inline-block p-2 rounded text-white bg-warning">
+                VIP seats
+              </div>
+            </div>
+          </div>
         </div>
         <div className="col-4">
           <img
