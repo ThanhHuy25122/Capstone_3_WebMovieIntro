@@ -1,7 +1,6 @@
 import { Outlet, useNavigate } from "react-router-dom";
 import {
-  FileOutlined,
-  PieChartOutlined,
+  DoubleLeftOutlined,
   UserOutlined,
   DesktopOutlined,
   TeamOutlined,
@@ -11,6 +10,7 @@ import { useState } from "react";
 import Sider from "antd/es/layout/Sider";
 import { Content, Footer, Header } from "antd/es/layout/layout";
 import { AdminLayoutItem } from "enums";
+import { hover } from "@testing-library/user-event/dist/hover";
 
 function getItem(label, key, icon, children, type, onClick) {
   return {
@@ -101,9 +101,16 @@ export default function AdminLayout() {
             height: 32,
             margin: 16,
             background: "rgba(255, 255, 255, 0.2)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            color: "white",
+            cursor: "pointer",
           }}
           onClick={() => navigate("/")}
-        />
+        >
+          Home
+        </div>
         <Menu
           theme="dark"
           defaultSelectedKeys={["1"]}
