@@ -19,16 +19,14 @@ export default function Header() {
     navigate("/");
   };
 
-
   const handleNavigate = (ele) => {
-    navigate(`/movie-detail/${ele.maPhim}`)
-    document.querySelector('#click-button').click();
+    navigate(`/movie-detail/${ele.maPhim}`);
+    document.querySelector("#click-button").click();
     window.location.reload();
-  }
+  };
   const handleSearch = () => {
     if (keyword.keyword.length < 1) {
-
-      return (" Vui lòng nhập tên phim bạn muốn tìm!")
+      return " Vui lòng nhập tên phim bạn muốn tìm!";
     }
     const filterData = movieList.filter((ele) => {
       return (
@@ -37,27 +35,20 @@ export default function Header() {
     });
 
     if (filterData.length === 0) {
-      return "Không tìm thấy phim theo yêu cầu!"
+      return "Không tìm thấy phim theo yêu cầu!";
     }
 
     return filterData.map((ele) => {
-
       return (
-
-        <div
-          key={ele.maPhim}
-          onClick={() => handleNavigate(ele)}
-        >
+        <div key={ele.maPhim} onClick={() => handleNavigate(ele)}>
           <p className="search-list">{ele.tenPhim}</p>
         </div>
       );
-
-
     });
   };
 
   return (
-    <div >
+    <div>
       <div className="container bg-1">
         <div className="row">
           <div className="col-6 col-sm-4 content1 ">
@@ -72,7 +63,7 @@ export default function Header() {
               <>
                 <span className="mr-3">Hello! {userState.userInfo.hoTen}</span>
                 {userState.userInfo.maLoaiNguoiDung !==
-                  MaLoaiNguoiDung.QuanTri ? (
+                MaLoaiNguoiDung.QuanTri ? (
                   <></>
                 ) : (
                   <>

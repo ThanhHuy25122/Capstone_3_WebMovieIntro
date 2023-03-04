@@ -53,11 +53,11 @@ export default function Showtimes() {
                   <h5>{ele.tenCumRap}</h5>
                   <span className="text-light">{ele.diaChi}</span>
                 </div>
-                <div className="col-12">
+                <div className="col-12 ">
                   <div className="row">
                     {ele?.lichChieuPhim.map((e) => {
                       return (
-                        <div key={e.maLichChieu} className="col-3">
+                        <div key={e.maLichChieu} className="col-3 ">
                           <Link to={`/booking/${e?.maLichChieu}`}>
                             {formatDate(e.ngayChieuGioChieu)}
                           </Link>
