@@ -1,35 +1,44 @@
-import { notification } from "antd";
-import { useResponsive } from "hooks/useResposive";
-import React, { useEffect, useState } from "react";
+import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import Slider from "react-slick";
 import { useMovieList } from "../../../../hooks/useMovieList";
+import { useResponsive } from "../../../../hooks/useResposive";
+
 import "./index.scss";
 
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 export default function MovieList() {
+  const view = useResponsive();
   const [movieList] = useMovieList();
   const navigate = useNavigate();
-  const [items, setItems] = useState(6);
+
+  let heightMovieCard = 500;
+  if (view.width < 768) {
+    heightMovieCard = 550;
+  }
 
   const renderMovieList = () => {
-    return movieList.slice(0, items).map((ele) => {
+    return movieList.map((ele) => {
       return (
         <div
           key={ele.maPhim}
-          className="col-12 col-md-6 col-lg-4"
+          // className="col-12 col-md-6 col-lg-4"
           onClick={() => navigate(`/movie-detail/${ele.maPhim}`)}
         >
           <div
             className="card movie-card"
             style={{
               marginBottom: 20,
-              height: 500,
+              height: heightMovieCard,
               overflow: "hidden",
             }}
           >
             <img
               style={{
                 objectFit: "cover",
-                minHeight: 500 - 2,
+                minHeight: heightMovieCard - 2,
                 position: "relative",
                 borderRadius: "0.25rem",
               }}
@@ -45,30 +54,75 @@ export default function MovieList() {
       );
     });
   };
+  const ref = useRef({});
+  const next = () => {
+    ref.current.slickNext();
+    console.log("hehe");
+  };
 
-  const handleReadMore = () => {
-    if (movieList.length < items) {
-      notification.warning({
-        message: "Không còn phim trong danh sách !",
-      });
-      return;
-    }
-    setItems(items + 5);
+  const previous = () => {
+    ref.current.slickPrev();
+    console.log("hii");
+  };
+  const settings = {
+    className: "section-outstanding__slider",
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    infinite: false,
+    rows: 2,
+    accessibility: true,
+    adaptiveHeight: false,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          rows: 2,
+          adaptiveHeight: false,
+        },
+      },
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          rows: 2,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          rows: 1,
+        },
+      },
+      {
+        breakpoint: 576,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          rows: 1,
+        },
+      },
+    ],
   };
 
   return (
     <div>
-      <div className="title">
-        <h3>Danh Sách Phim</h3>
+      <div id="movieList" className="title">
+        <h3>DANH SÁCH PHIM</h3>
       </div>
-      <div className="row mt-3 mx-auto pl-3 pr-3">{renderMovieList()}</div>
-      <div
-        style={{
-          textAlign: "center",
-        }}
-      >
-        <button onClick={handleReadMore} className="btn btn-primary">
-          Xem thêm
+      <Slider ref={ref} {...settings}>
+        {renderMovieList()}
+      </Slider>
+      <div style={{ textAlign: "center" }}>
+        <button className="list-button" onClick={() => previous()}>
+          <i className="las la-angle-left"></i>
+        </button>
+        <button className="list-button" onClick={() => next()}>
+          <i className="las la-angle-right"></i>
         </button>
       </div>
     </div>
