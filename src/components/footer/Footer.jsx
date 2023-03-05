@@ -1,5 +1,4 @@
 import React from "react";
-import { useResponsive } from "../../hooks/useResposive";
 import "./style.scss";
 export default function Footer() {
   return (

@@ -1,25 +1,23 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useResponsive } from "../../hooks/useResposive";
 import { setUserInfoAction } from "../../store/actions/userAction";
 import { MaLoaiNguoiDung } from "enums";
 import "./style.scss";
 import { useMovieList } from "hooks/useMovieList";
 export default function Header() {
-  const view = useResponsive();
   const userState = useSelector((state) => state.userReducer);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [movieList] = useMovieList();
   const { userInfo } = userState;
+
   const [keyword, setKeyword] = useState({ keyword: "" });
   const handleLogout = () => {
     localStorage.removeItem("USER_INFO_KEY");
     dispatch(setUserInfoAction(null));
     navigate("/");
   };
-  console.log(userInfo);
   const handleNavigate = (ele) => {
     navigate(`/movie-detail/${ele.maPhim}`);
     document.querySelector("#click-button").click();
@@ -69,16 +67,33 @@ export default function Header() {
           </button>
           <div className="collapse navbar-collapse" id="collapsibleNavIdd">
             <div className="ml-auto  content2">
-              <span className="">{userState.userInfo?.hoTen}</span>
               {userInfo ? (
                 <>
                   {userState.userInfo.maLoaiNguoiDung !==
                   MaLoaiNguoiDung.QuanTri ? (
-                    <></>
+                    <>
+                      <span className="mr-3">
+                        Hi,{" "}
+                        {
+                          <NavLink to={`/update-user/${userInfo?.taiKhoan}`}>
+                            {userInfo?.hoTen}
+                          </NavLink>
+                        }
+                      </span>
+                    </>
                   ) : (
                     <>
+                      <span className="mr-3">
+                        Hi,{" "}
+                        {
+                          <NavLink to={`/update-user/${userInfo?.taiKhoan}`}>
+                            {userInfo?.hoTen}
+                          </NavLink>
+                        }
+                      </span>
+
                       <button
-                        className="btn btn-light my-2 my-sm-0 mr-2"
+                        className="btn btn-success my-2 my-sm-0 mr-2"
                         onClick={() => navigate("/admin/movie-management")}
                       >
                         Admin
@@ -129,7 +144,7 @@ export default function Header() {
             <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
               <li className="nav-item  ml-5">
                 <NavLink className="home-css" to="/">
-                  TRANG CHỦ 2
+                  TRANG CHỦ
                 </NavLink>
               </li>
             </ul>

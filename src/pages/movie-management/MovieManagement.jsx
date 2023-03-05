@@ -14,7 +14,7 @@ export default function MovieManagement() {
   const [movieList, getMovieList] = useMovieList();
   const [searchMovieList, setSearchMovieList] = useState([]);
   const navigate = useNavigate();
-  const [searchParams, setSearchParams] = useSearchParams({
+  const [_, setSearchParams] = useSearchParams({
     search: "",
     page: 1,
   });
@@ -22,8 +22,6 @@ export default function MovieManagement() {
   const [current, setCurrent] = useState(1);
   const [keyword, setKeyword] = useState("");
   const [__, setLoadingState] = useContext(LoadingContext);
-
-  console.log(searchParams);
 
   useEffect(() => {
     handleSearchQuery();

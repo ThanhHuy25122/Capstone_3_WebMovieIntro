@@ -57,12 +57,10 @@ export default function MovieList() {
   const ref = useRef({});
   const next = () => {
     ref.current.slickNext();
-    console.log("hehe");
   };
 
   const previous = () => {
     ref.current.slickPrev();
-    console.log("hii");
   };
   const settings = {
     className: "section-outstanding__slider",

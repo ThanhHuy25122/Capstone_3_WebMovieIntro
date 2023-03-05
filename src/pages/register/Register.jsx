@@ -10,6 +10,7 @@ import { useNavigate, useParams } from "react-router";
 import BookedTickets from "./components/booked-tickets/BookedTickets.jsx";
 import { MaLoaiNguoiDung } from "enums/index.js";
 import { useForm } from "antd/es/form/Form.js";
+import { NavLink } from "react-router-dom";
 
 export default function Register() {
   const formItemLayout = {
@@ -53,7 +54,6 @@ export default function Register() {
 
   const [userType, setUserType] = useState(null);
   const [bookingInformation, setBookingInformation] = useState(null);
-  console.log({ userType, bookingInformation });
 
   const navigate = useNavigate();
 
@@ -105,6 +105,7 @@ export default function Register() {
   };
 
   const [form] = useForm();
+
   const handleFinish = async (values) => {
     setState({
       taiKhoan: values.taiKhoan,
@@ -147,7 +148,7 @@ export default function Register() {
     }
   };
 
-  // block space
+  // block space on input
 
   function handleKeyPress(event) {
     if (event.key === " ") {
@@ -161,7 +162,10 @@ export default function Register() {
       style={{
         minHeight: "calc( 100vh - 160px )",
         paddingTop: "50px",
-        backgroundColor: "white",
+        backgroundColor: "transparent",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
       }}
     >
       <Form
@@ -170,7 +174,13 @@ export default function Register() {
         name="register"
         onFinish={handleFinish}
         style={{
-          maxWidth: 600,
+          maxWidth: 800,
+          width: 600,
+          height: 500,
+          padding: "50px",
+          backgroundColor: "white",
+          borderRadius: 15,
+          position: "relative",
         }}
         scrollToFirstError
         initialValues={{
@@ -181,9 +191,37 @@ export default function Register() {
           soDt: "",
         }}
       >
+        <NavLink
+          className="btn btn-secondary"
+          style={{
+            position: "absolute",
+            zIndex: "2",
+            bottom: "15px",
+            left: "15px",
+            fontSize: "13px",
+          }}
+          to="/"
+        >
+          Trở về trang chủ
+        </NavLink>
+        <NavLink
+          className="btn btn-primary  "
+          style={{
+            position: "absolute",
+            zIndex: "2",
+            bottom: "15px",
+            right: "15px",
+            fontSize: "13px",
+          }}
+          to="/login"
+        >
+          Login
+        </NavLink>
+
         <Form.Item
+          className="text-light"
           name="hoTen"
-          label="Full Name"
+          label="Họ & tên"
           rules={[
             {
               required: true,
@@ -196,12 +234,13 @@ export default function Register() {
             },
           ]}
         >
-          <Input />
+          <Input placeholder="Nhập họ và tên ..." />
         </Form.Item>
         <Form.Item
+          className="text-light"
           onKeyPress={handleKeyPress}
           name="taiKhoan"
-          label="Username"
+          label="Tài khoản"
           rules={[
             {
               required: true,
@@ -209,13 +248,14 @@ export default function Register() {
             },
           ]}
         >
-          <Input />
+          <Input placeholder="Nhập tài khoản ..." />
         </Form.Item>
 
         <Form.Item
+          className="text-light"
           name="matKhau"
           onKeyPress={handleKeyPress}
-          label="Password"
+          label="Mật khẩu"
           rules={[
             { required: true, message: "Không được để trống !" },
             {
@@ -228,10 +268,11 @@ export default function Register() {
           ]}
           hasFeedback
         >
-          <Input.Password />
+          <Input.Password placeholder="Nhập mật khẩu " />
         </Form.Item>
 
         <Form.Item
+          className="text-light"
           name="email"
           label="E-mail"
           onKeyPress={handleKeyPress}
@@ -243,12 +284,13 @@ export default function Register() {
             },
           ]}
         >
-          <Input />
+          <Input placeholder="Nhập mail ..." />
         </Form.Item>
         <Form.Item
+          className="text-light"
           name="soDt"
           onKeyPress={handleKeyPress}
-          label="Phone Number"
+          label="Số điện thoại"
           rules={[
             {
               required: true,
@@ -261,26 +303,25 @@ export default function Register() {
           ]}
         >
           <Input
+            placeholder="Nhập số điện thoại ..."
             style={{
               width: "100%",
             }}
           />
         </Form.Item>
 
-        <Form.Item {...tailFormItemLayout}>
+        <Form.Item className="text-light" {...tailFormItemLayout}>
           {params.userId ? (
-            <Button htmlType="submit">Update</Button>
+            <Button className=" btn-success" htmlType="submit">
+              Update
+            </Button>
           ) : (
-            <Button htmlType="submit">Register</Button>
+            <Button className=" btn-warning" htmlType="submit">
+              Register
+            </Button>
           )}
         </Form.Item>
       </Form>
-      {params.userId && (
-        <BookedTickets
-          bookingInformation={bookingInformation}
-          setBookingInformation={setBookingInformation}
-        />
-      )}
     </div>
   );
 }
