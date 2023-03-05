@@ -1,7 +1,7 @@
 import { notification } from "antd";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { loginApi } from "../../services/login";
 import { setUserInfoAction } from "../../store/actions/userAction";
 
@@ -63,8 +63,35 @@ export default function Login() {
           alignItems: "center",
           backgroundColor: "rgba(255, 255, 255,0.2",
           borderRadius: "10px",
+          position: "relative",
         }}
       >
+        <NavLink
+          className="btn btn-secondary"
+          style={{
+            position: "absolute",
+            zIndex: "2",
+            top: "15px",
+            left: "15px",
+            fontSize: "13px",
+          }}
+          to="/"
+        >
+          Trở về trang chủ
+        </NavLink>
+        <NavLink
+          className="btn btn-warning"
+          style={{
+            position: "absolute",
+            zIndex: "2",
+            top: "15px",
+            right: "15px",
+            fontSize: "13px",
+          }}
+          to="/register"
+        >
+          Đăng ký
+        </NavLink>
         <div
           className="w-50 py-5"
           style={{
@@ -74,24 +101,26 @@ export default function Login() {
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label style={labelLogin} htmlFor="">
-                Username
+                Tài khoản
               </label>
               <input
                 onChange={handleChange}
                 type="text"
                 name="taiKhoan"
                 className="form-control border-secondary"
+                placeholder="Nhập tài khoản ..."
               />
             </div>
             <div className="form-group">
               <label style={labelLogin} htmlFor="">
-                Password
+                Mật khẩu
               </label>
               <input
                 onChange={handleChange}
                 type="password"
                 name="matKhau"
                 className="form-control border-secondary"
+                placeholder="Nhập mật khẩu ..."
               />
             </div>
             <button className="btn btn-primary">LOGIN</button>
