@@ -6,13 +6,13 @@ export default function MovieDetail() {
   return (
     <>
       <div
-        className="my-5"
+        className="py-5"
         style={{
           minHeight: "calc(100vh - 180px)",
         }}
       >
         <div>
-          <div className="title my-5">
+          <div className="title mb-5">
             <h3>Chi tiết phim</h3>
           </div>
         </div>

@@ -37,7 +37,6 @@
   }
 }
 
-
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&display=swap");
 
 body {
@@ -91,6 +90,7 @@ div.ant-carousel::after {
     rgba(255, 255, 255, 0) 0%,
     rgba(0, 0, 0, 1) 100%
   );
+
 }
 
 div.movie-card {
@@ -149,31 +149,44 @@ div.movie-card:hover div.card-body::after {
 .las {
   font-size: 1.5rem;
 }
-.home-css:hover{
-  color: red !important;
+.header-bg {
+  background-color: rgba(47, 195, 195, 0.372);
+}
+a:hover {
+  color: white !important;
   transition: ease-in-out 0.4s;
   text-decoration: none !important;
 }
+h3 {
+  color: white;
+}
 
+.list-button {
+  border-radius: 50%;
+  border: none;
+  height: 45px;
+  width: 45px;
+  margin: 5px;
+  background-color: white;
+}
 
+.list-button:focus {
+  outline: none;
+}
 
-.slick-initialized .slick-slide{
+.ant-tabs-tab-btn {
+  color: white;
+  font-size: 24px;
+  transition: all 0.4s;
+}
+.slick-initialized .slick-slide {
   padding: 0 10px;
 }
 /* movie-detail */
-.text-detail{
+.text-detail {
   color: rgb(149, 154, 160);
 }
-.texttime-detail{
-  color:#007bff !important;
+.texttime-detail {
+  color: #007bff !important;
 }
 
-
-.banner {
-  width: 100%;
-  height: 100%;
-  background-attachment: fixed;
-  background-image: url(../public/images/Banner/banner.jpg);
-  background-size: cover;
-  background-position: center;
-}
