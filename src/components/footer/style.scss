@@ -11,7 +11,6 @@ body {
 .container-fluid {
   margin-top: 101px;
   color: #000 !important;
-
 }
 
 .card {
@@ -23,7 +22,6 @@ body {
   background-repeat: no-repeat;
   background-position: right
     calc(110px + (150 - 110) * ((100vw - 360px) / (1600 - 360))) bottom !important;
-
 }
 
 h2 {
@@ -36,7 +34,6 @@ h2 {
   cursor: pointer;
   font-size: 21px;
   margin: 5px 10px 5px 10px !important;
-
 }
 .footer-design {
   h5 {
@@ -62,5 +59,5 @@ h2 {
     h5 {
       font-size: 36px;
     }
-
+  }
 }
