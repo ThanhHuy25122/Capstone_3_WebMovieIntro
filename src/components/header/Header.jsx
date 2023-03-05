@@ -129,7 +129,7 @@ export default function Header() {
             <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
               <li className="nav-item  ml-5">
                 <NavLink className="home-css" to="/">
-                  TRANG CHỦ
+                  TRANG CHỦ 2
                 </NavLink>
               </li>
             </ul>
