@@ -1,3 +1,4 @@
+import PageNotFound from "pages/page-not-found/PageNotFound";
 import ShowtimeManagement from "pages/showtime-management/ShowtimeManagement";
 import UserForm from "pages/user-form/UserForm";
 import UserManagement from "pages/user-management/UserManagement";
@@ -44,19 +45,19 @@ export default function Router() {
             },
           ],
         },
+      ],
+    },
+    {
+      path: "/",
+      element: <NoAuthGuard />,
+      children: [
         {
-          path: "/",
-          element: <NoAuthGuard />,
-          children: [
-            {
-              path: "/login",
-              element: <Login />,
-            },
-            {
-              path: "/register",
-              element: <Register />,
-            },
-          ],
+          path: "/login",
+          element: <Login />,
+        },
+        {
+          path: "/register",
+          element: <Register />,
         },
       ],
     },
@@ -99,6 +100,10 @@ export default function Router() {
           ],
         },
       ],
+    },
+    {
+      path: "*",
+      element: <PageNotFound />,
     },
   ]);
 
