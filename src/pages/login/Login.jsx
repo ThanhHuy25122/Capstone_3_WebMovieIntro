@@ -14,6 +14,11 @@ export default function Login() {
     matKhau: "",
   });
 
+  const labelLogin = {
+    fontSize: "1.5rem",
+    margin: "1rem auto",
+  };
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setState({
@@ -40,34 +45,59 @@ export default function Login() {
   };
 
   return (
-    <div
-      className="w-25 mx-auto py-5"
+    <article
       style={{
-        minHeight: "calc(100vh )",
-        color: "white",
+        height: "100vh",
+        width: "100vw",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
       }}
     >
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="">Username</label>
-          <input
-            onChange={handleChange}
-            type="text"
-            name="taiKhoan"
-            className="form-control border-secondary"
-          />
+      <header
+        style={{
+          height: "calc(50vw - 15vh)",
+          width: "50vw",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: "rgba(255, 255, 255,0.2",
+          borderRadius: "10px",
+        }}
+      >
+        <div
+          className="w-50 py-5"
+          style={{
+            color: "white",
+          }}
+        >
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label style={labelLogin} htmlFor="">
+                Username
+              </label>
+              <input
+                onChange={handleChange}
+                type="text"
+                name="taiKhoan"
+                className="form-control border-secondary"
+              />
+            </div>
+            <div className="form-group">
+              <label style={labelLogin} htmlFor="">
+                Password
+              </label>
+              <input
+                onChange={handleChange}
+                type="password"
+                name="matKhau"
+                className="form-control border-secondary"
+              />
+            </div>
+            <button className="btn btn-primary">LOGIN</button>
+          </form>
         </div>
-        <div className="form-group">
-          <label htmlFor="">Password</label>
-          <input
-            onChange={handleChange}
-            type="password"
-            name="matKhau"
-            className="form-control border-secondary"
-          />
-        </div>
-        <button className="btn btn-primary">LOGIN</button>
-      </form>
-    </div>
+      </header>
+    </article>
   );
 }
