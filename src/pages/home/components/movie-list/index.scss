@@ -22,7 +22,7 @@ div {
       height: 1px;
       background-color: #fff;
 
-      left: 50%;
+      // left: 50%;
       transform: translateX(-50%);
     }
 
@@ -30,6 +30,23 @@ div {
       color: #fff;
       margin: 0;
       padding: 10px;
+    }
+  }
+  .list-button {
+    border-radius: 50%;
+    border: none;
+    height: 45px;
+    width: 45px;
+    margin: 5px;
+    background-color: white;
+    &:hover {
+      color: white;
+      background-color: darkgray;
+
+      transition: all 0.4s;
+    }
+    &:focus {
+      outline: none;
     }
   }
 }

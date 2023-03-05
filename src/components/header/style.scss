@@ -1,0 +1,48 @@
+.search-list {
+  cursor: pointer;
+  &:hover {
+    color: red;
+
+    background-color: bisque;
+  }
+}
+.movie-star {
+  font-size: 48px;
+  color: #000 !important;
+}
+.icon-movie {
+  font-size: 4rem;
+  color: #000;
+}
+@media only screen and (max-width: 768px) {
+  .movie-star {
+    font-size: 24px;
+  }
+  .icon-movie {
+    font-size: 2rem;
+  }
+}
+.content2 {
+  display: flex;
+
+  align-items: center;
+  justify-content: flex-end;
+}
+.content1 {
+  display: flex;
+
+  align-items: center;
+  justify-content: flex-start;
+}
+.header-bg {
+  background-color: rgba(83, 85, 92, 0.526);
+  .icon-search {
+    font-size: 1rem;
+  }
+  .btn-search {
+    border-radius: 0 !important;
+  }
+}
+.bg-1 {
+  background-color: white;
+}
