@@ -19,7 +19,7 @@ export default function Header() {
     dispatch(setUserInfoAction(null));
     navigate("/");
   };
-
+  console.log(userInfo);
   const handleNavigate = (ele) => {
     navigate(`/movie-detail/${ele.maPhim}`);
     document.querySelector("#click-button").click();
@@ -65,11 +65,11 @@ export default function Header() {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <i class="las la-angle-down"></i>
+            <i className="las la-angle-down"></i>
           </button>
           <div className="collapse navbar-collapse" id="collapsibleNavIdd">
             <div className="ml-auto  content2">
-              <span className="">{userState.userInfo.hoTen}</span>
+              <span className="">{userState.userInfo?.hoTen}</span>
               {userInfo ? (
                 <>
                   {userState.userInfo.maLoaiNguoiDung !==
