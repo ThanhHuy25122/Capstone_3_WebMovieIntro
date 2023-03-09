@@ -4,7 +4,7 @@ export default function News() {
   return (
     <div>
       <div className="title">
-        <h3>News</h3>
+        <h3>TIN KHUYẾN MÃI </h3>
       </div>
       <div
         style={{

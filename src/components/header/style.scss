@@ -22,6 +22,14 @@
     font-size: 2rem;
   }
 }
+@media only screen and (max-width: 314px) {
+  .movie-star {
+    font-size: 18px;
+  }
+  .icon-movie {
+    font-size: 1.5rem;
+  }
+}
 .content2 {
   display: flex;
 
@@ -36,11 +44,21 @@
 }
 .header-bg {
   background-color: rgba(83, 85, 92, 0.526);
-  .icon-search {
-    font-size: 1rem;
-  }
   .btn-search {
     border-radius: 0 !important;
+  }
+  .home-css {
+    color: red !important;
+    text-decoration: none;
+    // &:hover {
+    //   color: red !important;
+    // }
+  }
+  .icon-search {
+    font-size: 1rem !important;
+    &:focus {
+      outline: none !important;
+    }
   }
 }
 .bg-1 {

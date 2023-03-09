@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchMovieDetailApi } from "../../../../services/movie";
 import { formatDate } from "../../../../utils";
-
+import "./style.scss";
 export default function Detail() {
   const [movieDetail, setMovieDetail] = useState({});
 
@@ -22,7 +22,7 @@ export default function Detail() {
       <div className="col-12">
         <div className="row">
           <div
-            className="col-3"
+            className="col-12 col-sm-3"
             style={{
               borderRight: `1px solid #ffffff9e`,
             }}
@@ -31,24 +31,20 @@ export default function Detail() {
               style={{
                 border: "1px solid white",
                 borderRadius: "0.3rem",
-                maxHeight: 400,
+                // maxHeight: 400,
               }}
-              className="w-100"
+              className="w-100 xxx"
               src={movieDetail.hinhAnh}
               alt=""
             />
           </div>
           <div
-            className="col-9"
+            className="col-12 col-sm-9"
             style={{
               color: "white",
             }}
           >
-            <div
-              style={{
-                minHeight: 400,
-              }}
-            >
+            <div>
               <h3>{movieDetail.tenPhim}</h3>
               <h5>Mô tả :</h5>
               <p
@@ -72,8 +68,8 @@ export default function Detail() {
               <h3>Trailer</h3>
             </div>
             <div
+              className="trailer"
               style={{
-                width: 560,
                 height: `calc(560px * 9 / 16)`,
                 textAlign: "center",
                 backgroundColor: "rgba(255, 255, 255, .7)",
@@ -82,7 +78,6 @@ export default function Detail() {
             >
               <p
                 style={{
-                  lineHeight: "200px",
                   color: "black",
                 }}
               >

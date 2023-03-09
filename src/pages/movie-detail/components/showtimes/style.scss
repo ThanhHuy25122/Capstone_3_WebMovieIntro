@@ -1,0 +1,7 @@
+.time-showtime {
+  text-decoration: none !important;
+  &:hover {
+    color: white !important;
+    transition: all 0.4s;
+  }
+}

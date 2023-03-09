@@ -15,8 +15,14 @@ export default function MovieList() {
   const navigate = useNavigate();
 
   let heightMovieCard = 500;
-  if (view.width < 768) {
-    heightMovieCard = 550;
+  if (view.width < 314) {
+    heightMovieCard = 200;
+  } else if (view.width < 476) {
+    heightMovieCard = 300;
+  } else if (view.width < 576) {
+    heightMovieCard = 350;
+  } else if (view.width < 992) {
+    heightMovieCard = 400;
   }
 
   const renderMovieList = () => {
@@ -47,7 +53,7 @@ export default function MovieList() {
               alt="movie"
             />
             <div className="card-body">
-              <h5 className="card-title">{ele.tenPhim}</h5>
+              <h5 className="card-title name-movie">{ele.tenPhim}</h5>
             </div>
           </div>
         </div>
@@ -83,8 +89,8 @@ export default function MovieList() {
       {
         breakpoint: 992,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
+          slidesToShow: 3,
+          slidesToScroll: 3,
           rows: 2,
         },
       },
@@ -93,22 +99,22 @@ export default function MovieList() {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          rows: 1,
+          rows: 2,
         },
       },
       {
         breakpoint: 576,
         settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          rows: 1,
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          rows: 2,
         },
       },
     ],
   };
 
   return (
-    <div>
+    <div className="container">
       <div id="movieList" className="title">
         <h3>DANH SÁCH PHIM</h3>
       </div>
