@@ -7,7 +7,7 @@ export default function HomePage() {
   return (
     <>
       <div
-        className="py-5"
+        className=""
         style={{
           overflow: "hidden",
         }}

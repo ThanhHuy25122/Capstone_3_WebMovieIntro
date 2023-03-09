@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { fetchMovieShowtimesApi } from "../../../../services/cinema";
 import { formatDate } from "../../../../utils";
-
+import "./style.scss";
 export default function Showtimes() {
   const [movieShowtimes, setMovieShowtimes] = useState();
 
@@ -22,7 +22,9 @@ export default function Showtimes() {
       return (
         <a
           key={ele.maHeThongRap}
-          className={`nav-link text-capitalize ${!idx && "active"}`}
+          className={`nav-link time-showtime text-capitalize ${
+            !idx && "active"
+          }`}
           data-toggle="pill"
           href={`#${ele.maHeThongRap}`}
           role="tab"
@@ -69,9 +71,12 @@ export default function Showtimes() {
                   <div className="row">
                     {ele?.lichChieuPhim.map((e) => {
                       return (
-                        <div key={e.maLichChieu} className="col-3">
-                          <Link to={`/booking/${e?.maLichChieu}`}>
-                            {`> ` + formatDate(e.ngayChieuGioChieu)}
+                        <div key={e.maLichChieu} className="col-3 ">
+                          <Link
+                            className="time-showtime"
+                            to={`/booking/${e?.maLichChieu}`}
+                          >
+                            {formatDate(e.ngayChieuGioChieu)}
                           </Link>
                         </div>
                       );
@@ -90,9 +95,9 @@ export default function Showtimes() {
     <>
       <div className="col-12 mt-5 text-light">
         <div className="row">
-          <div className="col-3">
+          <div className="col-12 col-sm-3">
             <div
-              className="nav flex-column nav-pills"
+              className="nav flex-column nav-pills "
               id="v-pills-tab"
               role="tablist"
               aria-orientation="vertical"
@@ -101,7 +106,7 @@ export default function Showtimes() {
             </div>
           </div>
           <div
-            className="col-9"
+            className="col-12 col-sm-9"
             style={{
               overflow: "hidden",
             }}

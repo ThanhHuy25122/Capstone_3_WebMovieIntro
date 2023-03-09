@@ -150,11 +150,11 @@ export default function Header() {
             </ul>
           </div>
           <div>
-            <div className="input-group mb-3">
+            <div className="input-group mb-3 input-search">
               <input
                 type="text"
                 className="form-control"
-                placeholder="Tìm tên phim ,diễn viên..."
+                placeholder="Tìm tên phim ..."
                 aria-label="Recipient's username"
                 aria-describedby="button-addon2"
                 onChange={(event) => {
