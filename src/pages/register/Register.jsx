@@ -150,11 +150,11 @@ export default function Register() {
 
   // block space on input
 
-  function handleKeyPress(event) {
+  const handleKeyPress = (event) => {
     if (event.key === " ") {
       event.preventDefault();
     }
-  }
+  };
 
   return (
     <div

@@ -59,15 +59,13 @@ export default function MovieManagement() {
       if (count === 0) {
         notification.warning({
           message:
-            "Không có tài khoản bạn tìm kiếm " + decodeURIComponent(keyword),
+            "Không có tài khoản bạn tìm kiếm : " + decodeURIComponent(keyword),
         });
         return;
       }
     } catch ({ response }) {
       notification.error({
-        message:
-          response?.data?.content ||
-          "Lỗi khi lấy dữ liệu, có thể ở việc bạn tìm kiếm bằng dấu cách không",
+        message: response?.data?.content || "Lỗi khi lấy dữ liệu !",
       });
     } finally {
       setTimeout(() => setLoadingState({ isLoading: false }), 500);
