@@ -4,10 +4,11 @@ import Search from "antd/es/input/Search";
 
 export default function SearchMovie({ setKeyword }) {
   const handleSearch = async (value) => {
-    if (!value && value !== "") {
+    if (!value) {
       Modal.info({ title: "Please enter a search term" });
       return;
     }
+    console.log(encodeURIComponent(value));
 
     await setKeyword(!value ? "" : encodeURIComponent(value));
   };

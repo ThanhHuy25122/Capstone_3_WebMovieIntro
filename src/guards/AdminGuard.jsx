@@ -23,11 +23,12 @@ export default function AdminGuard() {
         });
         navigate("/");
       }
+      //ng dùng đã vào trang quản trị thành công
       if (userState.userInfo.maLoaiNguoiDung === MaLoaiNguoiDung.QuanTri) {
         notification.success({
           message: "Vào thành công trang quản lý !",
         });
-        navigate("/admin/movie-management");
+        navigate("/admin");
       }
     }
   }, []);
