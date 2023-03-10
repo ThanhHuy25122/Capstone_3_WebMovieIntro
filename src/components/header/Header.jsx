@@ -96,13 +96,13 @@ export default function Header() {
                         className="btn btn-success my-2 my-sm-0 mr-2"
                         onClick={() => navigate("/admin/movie-management")}
                       >
-                        Admin
+                        Quản lý
                       </button>
                     </>
                   )}
 
                   <button className="btn btn-danger" onClick={handleLogout}>
-                    Logout
+                    Đăng xuất
                   </button>
                 </>
               ) : (
@@ -112,13 +112,13 @@ export default function Header() {
                     type="summit"
                     onClick={() => navigate("/register")}
                   >
-                    Register
+                    Đăng ký
                   </button>
                   <button
                     className="btn btn-primary my-2 my-sm-0"
                     onClick={() => navigate("/login")}
                   >
-                    Login
+                    Đăng nhập
                   </button>
                 </>
               )}
