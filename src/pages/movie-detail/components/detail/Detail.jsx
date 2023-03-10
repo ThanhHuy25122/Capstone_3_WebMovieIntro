@@ -18,15 +18,10 @@ export default function Detail() {
   };
 
   return (
-    <>
-      <div className="col-12">
+    <div className="detail-css col-12">
+      <div className="col-12 ">
         <div className="row">
-          <div
-            className="col-12 col-sm-3"
-            style={{
-              borderRight: `1px solid #ffffff9e`,
-            }}
-          >
+          <div className="col-12 col-sm-3 img-detail">
             <img
               style={{
                 border: "1px solid white",
@@ -87,6 +82,6 @@ export default function Detail() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

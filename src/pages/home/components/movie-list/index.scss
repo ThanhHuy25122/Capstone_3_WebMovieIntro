@@ -50,6 +50,10 @@ div {
     }
   }
 }
+.slick-next,
+.slick-prev {
+  display: none !important;
+}
 // @media only screen and (max-width: 768) {
 //   .name-movie {
 //     font-size: 12px;

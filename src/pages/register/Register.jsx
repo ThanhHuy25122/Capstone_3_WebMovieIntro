@@ -176,7 +176,6 @@ export default function Register() {
         style={{
           maxWidth: 800,
           width: 600,
-          height: 500,
           padding: "50px",
           backgroundColor: "white",
           borderRadius: 15,
