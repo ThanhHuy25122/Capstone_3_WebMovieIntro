@@ -5,6 +5,9 @@
 }
 .img-detail {
   border-right: 1px solid #ffffff9e;
+  img {
+    width: 100%;
+  }
 }
 @media only screen and (max-width: 576px) {
   .detail-css {
@@ -13,8 +16,24 @@
 
   .img-detail {
     border-right: none !important;
+    width: 50% !important;
+    img {
+      width: 50% !important;
+    }
   }
-  // img {
-  //   width: 50% !important;
-  // }
+  .name-detail {
+    .trailer {
+      height: 200px !important;
+    }
+  }
+}
+@media only screen and (max-width: 314px) {
+  .name-detail {
+    h3 {
+      font-size: 24px;
+    }
+    .trailer {
+      height: 100px !important;
+    }
+  }
 }

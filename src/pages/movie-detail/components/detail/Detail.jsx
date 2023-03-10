@@ -28,13 +28,12 @@ export default function Detail() {
                 borderRadius: "0.3rem",
                 // maxHeight: 400,
               }}
-              className="w-100 xxx"
               src={movieDetail.hinhAnh}
               alt=""
             />
           </div>
           <div
-            className="col-12 col-sm-9"
+            className="col-12 col-sm-9 name-detail"
             style={{
               color: "white",
             }}
