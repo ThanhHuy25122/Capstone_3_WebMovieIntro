@@ -1,5 +1,5 @@
 import { Outlet, useNavigate } from "react-router-dom";
-import { UserOutlined, DesktopOutlined, TeamOutlined } from "@ant-design/icons";
+import { UserOutlined, DesktopOutlined } from "@ant-design/icons";
 import { Breadcrumb, Layout, Menu, theme } from "antd";
 import { useState } from "react";
 import Sider from "antd/es/layout/Sider";
