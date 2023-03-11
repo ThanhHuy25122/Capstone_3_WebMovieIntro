@@ -1,16 +1,10 @@
 import { Outlet, useNavigate } from "react-router-dom";
-import {
-  DoubleLeftOutlined,
-  UserOutlined,
-  DesktopOutlined,
-  TeamOutlined,
-} from "@ant-design/icons";
+import { UserOutlined, DesktopOutlined } from "@ant-design/icons";
 import { Breadcrumb, Layout, Menu, theme } from "antd";
 import { useState } from "react";
 import Sider from "antd/es/layout/Sider";
 import { Content, Footer, Header } from "antd/es/layout/layout";
 import { AdminLayoutItem } from "enums";
-import { hover } from "@testing-library/user-event/dist/hover";
 
 function getItem(label, key, icon, children, type, onClick) {
   return {
@@ -50,35 +44,6 @@ export default function AdminLayout() {
       null,
       null,
       () => handleItemClick(userManagament[0])
-    ),
-
-    getItem(
-      "Navigation Two",
-      "sub2",
-      <TeamOutlined />,
-      [
-        getItem("Option 9", "9", null, null, null, () => handleItemClick("#")),
-        getItem("Option 10", "10", null, null, null, () =>
-          handleItemClick("#")
-        ),
-        getItem(
-          "Submenu",
-          "sub3",
-          null,
-          [
-            getItem("Option 11", "11", null, null, null, () =>
-              handleItemClick("#")
-            ),
-            getItem("Option 12", "12", null, null, null, () =>
-              handleItemClick("#")
-            ),
-          ],
-          null,
-          () => handleItemClick("#")
-        ),
-      ],
-      null,
-      () => handleItemClick("#")
     ),
   ];
 
