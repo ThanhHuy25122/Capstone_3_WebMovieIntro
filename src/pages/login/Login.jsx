@@ -41,40 +41,6 @@ export default function Login() {
     }
   };
 
-  const re = () => {
-    return (
-      <>
-        <NavLink
-          className="text-light"
-          style={{
-            position: "absolute",
-            zIndex: "2",
-            top: "15px",
-            left: "15px",
-            fontSize: "1.5rem",
-          }}
-          to="/"
-        >
-          Trở về trang chủ
-        </NavLink>
-        <NavLink
-          className="text-light"
-          style={{
-            display: "inline-block",
-            position: "absolute",
-            zIndex: "2",
-            top: "15px",
-            right: "15px",
-            fontSize: "1.5rem",
-          }}
-          to="/register"
-        >
-          Đăng ký
-        </NavLink>
-      </>
-    );
-  };
-
   return (
     <article
       style={{
@@ -88,7 +54,6 @@ export default function Login() {
       <header
         style={{
           padding: "16px 0",
-          width: "43vw",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",

@@ -43,7 +43,6 @@ export default function BookedTickets({
       ),
     },
     {
-      title: "Action",
       key: "action",
       render: (_, record) => (
         <Space size="middle">

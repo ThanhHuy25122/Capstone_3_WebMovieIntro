@@ -7,7 +7,6 @@ import {
 } from "services/register";
 import { GROUP_ID } from "../../constants/index.js";
 import { useNavigate, useParams } from "react-router";
-import BookedTickets from "./components/booked-tickets/BookedTickets.jsx";
 import { MaLoaiNguoiDung } from "enums/index.js";
 import { useForm } from "antd/es/form/Form.js";
 import { NavLink } from "react-router-dom";
@@ -170,7 +169,6 @@ export default function Register() {
     >
       <header
         style={{
-
           backgroundColor: "white",
           display: "flex",
           flexDirection: "column",
