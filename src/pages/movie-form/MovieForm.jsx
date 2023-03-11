@@ -137,7 +137,7 @@ export default function MovieForm() {
       initialValues={{
         size: componentSize,
         tenPhim: "",
-        trailer: "demo",
+        trailer: "",
         moTa: "",
         maNhom: "",
         ngayKhoiChieu: "",
@@ -150,7 +150,7 @@ export default function MovieForm() {
       onValuesChange={onFormLayoutChange}
       size={componentSize}
       style={{
-        maxWidth: 600,
+        maxWidth: 800,
       }}
     >
       <Form.Item label="Form Size" name="size">
@@ -181,17 +181,15 @@ export default function MovieForm() {
         <Input />
       </Form.Item>
       <Form.Item label="Trailer" name="trailer">
-        <Select>
-          <Select.Option value="demo">Demo</Select.Option>
-        </Select>
+        <Input />
       </Form.Item>
 
-      <Form.Item label="Mô ta" name="moTa">
+      <Form.Item label="Mô tả" name="moTa">
         <Input />
       </Form.Item>
 
       <Form.Item label="Ngày khởi chiếu" name="ngayKhoiChieu">
-        <DatePicker showTime />
+        <DatePicker />
       </Form.Item>
       <Form.Item label="Đang chiếu" valuePropName="checked" name="dangChieu">
         <Switch />
