@@ -43,9 +43,10 @@
   justify-content: flex-start;
 }
 .header-bg {
-  background-color: rgba(83, 85, 92, 0.526);
+  // background-color: rgba(83, 85, 92, 0.526);
   .btn-search {
     border-radius: 0 !important;
+    margin-top: 6px;
   }
   .home-css {
     color: red !important;
@@ -60,6 +61,18 @@
       outline: none !important;
     }
   }
+  .input-search {
+    // padding-top: 14px;
+    margin-top: 6px;
+  }
+  .button-home {
+    color: white;
+    font-size: 36px;
+  }
+}
+.header-bottom {
+  // background-color: rgba(83, 85, 92, 0.526);
+  background-color: #000;
 }
 .bg-1 {
   background-color: white;

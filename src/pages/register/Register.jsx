@@ -170,6 +170,7 @@ export default function Register() {
     >
       <header
         style={{
+
           backgroundColor: "white",
           display: "flex",
           flexDirection: "column",

@@ -145,9 +145,6 @@ div.movie-card:hover div.card-body::after {
 }
 /* HEADER */
 
-.header-bg {
-  background-color: rgba(47, 195, 195, 0.372);
-}
 
 h3 {
   color: white;
@@ -191,4 +188,8 @@ h3 {
 
 #root {
   background-color: transparent;
+}
+.row{
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }

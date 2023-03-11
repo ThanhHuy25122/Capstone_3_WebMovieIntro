@@ -1,0 +1,50 @@
+.chair {
+  text-align: center;
+}
+@media only screen and (max-width: 1200px) {
+  .booking-detail {
+    margin-top: 10px;
+    text-align: center;
+    padding: 10px;
+    background-color: #00000054;
+    border-radius: 6px;
+    img {
+      border: 1px solid white;
+      border-radius: 6px;
+    }
+    h4 {
+      color: white;
+      margin-top: 5px;
+    }
+    h5 {
+      color: white;
+    }
+  }
+  .booking-css {
+    .row {
+      justify-content: space-evenly;
+    }
+  }
+}
+@media only screen and (max-width: 374px) {
+  .booking-detail {
+    img {
+      width: 200px !important;
+      height: 300px !important;
+    }
+    h4 {
+      font-size: 1.25rem;
+    }
+    h5 {
+      font-size: 1rem;
+    }
+  }
+}
+@media only screen and (max-width: 274px) {
+  .booking-detail {
+    img {
+      width: 100px !important;
+      height: 200px !important;
+    }
+  }
+}

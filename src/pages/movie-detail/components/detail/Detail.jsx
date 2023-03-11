@@ -18,28 +18,22 @@ export default function Detail() {
   };
 
   return (
-    <>
-      <div className="col-12">
+    <div className="detail-css col-12">
+      <div className="col-12 ">
         <div className="row">
-          <div
-            className="col-12 col-sm-3"
-            style={{
-              borderRight: `1px solid #ffffff9e`,
-            }}
-          >
+          <div className="col-12 col-sm-3 img-detail">
             <img
               style={{
                 border: "1px solid white",
                 borderRadius: "0.3rem",
                 // maxHeight: 400,
               }}
-              className="w-100 xxx"
               src={movieDetail.hinhAnh}
               alt=""
             />
           </div>
           <div
-            className="col-12 col-sm-9"
+            className="col-12 col-sm-9 name-detail"
             style={{
               color: "white",
             }}
@@ -87,6 +81,6 @@ export default function Detail() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

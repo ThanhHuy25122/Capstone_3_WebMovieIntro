@@ -48,49 +48,51 @@ export default function Header() {
 
   return (
     <div>
-      <div className="container bg-1">
-        <nav className="navbar navbar-expand-sm bg-light ">
-          <NavLink className="  ml-2  navbar-brand " to={"/"}>
-            <i className="las la-star-half-alt icon-movie"></i>
-            <span className="movie-star">MOVIE STAR</span>
-          </NavLink>
-          <button
-            className="navbar-toggler d-lg-none "
-            type="button"
-            data-toggle="collapse"
-            data-target="#collapsibleNavIdd"
-            aria-controls="collapsibleNavIdd"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <i className="las la-angle-down"></i>
-          </button>
-          <div className="collapse navbar-collapse" id="collapsibleNavIdd">
-            <div className="ml-auto  content2">
-              {userInfo ? (
-                <>
-                  {userState.userInfo.maLoaiNguoiDung !==
-                  MaLoaiNguoiDung.QuanTri ? (
-                    <>
-                      <span className="mr-3">
-                        Hi,{" "}
-                        {
-                          <NavLink to={`/update-user/${userInfo?.taiKhoan}`}>
-                            {userInfo?.hoTen}
-                          </NavLink>
-                        }
-                      </span>
-                    </>
-                  ) : (
-                    <>
-                      <span className="mr-3">
-                        Hi,{" "}
-                        {
-                          <NavLink to={`/update-user/${userInfo?.taiKhoan}`}>
-                            {userInfo?.hoTen}
-                          </NavLink>
-                        }
-                      </span>
+      <div className="bg-light">
+        <div className="container bg-1">
+          <nav className="navbar navbar-expand-sm bg-light ">
+            <NavLink className="  ml-2  navbar-brand " to={"/"}>
+              <i className="las la-star-half-alt icon-movie"></i>
+              <span className="movie-star">MOVIE STAR</span>
+            </NavLink>
+            <button
+              className="navbar-toggler d-lg-none "
+              type="button"
+              data-toggle="collapse"
+              data-target="#collapsibleNavIdd"
+              aria-controls="collapsibleNavIdd"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <i className="las la-angle-down"></i>
+            </button>
+            <div className="collapse navbar-collapse" id="collapsibleNavIdd">
+              <div className="ml-auto  content2">
+                {userInfo ? (
+                  <>
+                    {userState.userInfo.maLoaiNguoiDung !==
+                    MaLoaiNguoiDung.QuanTri ? (
+                      <>
+                        <span className="mr-3">
+                          Hi,{" "}
+                          {
+                            <NavLink to={`/update-user/${userInfo?.taiKhoan}`}>
+                              {userInfo?.hoTen}
+                            </NavLink>
+                          }
+                        </span>
+                      </>
+                    ) : (
+                      <>
+                        <span className="mr-3">
+                          Hi,{" "}
+                          {
+                            <NavLink to={`/update-user/${userInfo?.taiKhoan}`}>
+                              {userInfo?.hoTen}
+                            </NavLink>
+                          }
+                        </span>
+
 
                       <button
                         className="btn btn-success my-2 my-sm-0 mr-2"
@@ -122,57 +124,60 @@ export default function Header() {
                   </button>
                 </>
               )}
+
             </div>
-          </div>
-        </nav>
+          </nav>
+        </div>
       </div>
 
-      <div className="container">
-        <nav className="navbar navbar-expand-md navbar-light header-bg ">
-          <button
-            className="navbar-toggler d-lg-none "
-            type="button"
-            data-toggle="collapse"
-            data-target="#collapsibleNavId"
-            aria-controls="collapsibleNavId"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="collapsibleNavId">
-            <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
-              <li className="nav-item  ml-5">
-                <NavLink className="home-css" to="/">
-                  TRANG CHỦ
-                </NavLink>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <div className="input-group mb-3 input-search">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Tìm tên phim ..."
-                aria-label="Recipient's username"
-                aria-describedby="button-addon2"
-                onChange={(event) => {
-                  setKeyword({ keyword: event.target.value });
-                }}
-              />
-              <button
-                className="btn btn-outline-primary btn-search"
-                type="button"
-                id="button-addon2"
-                data-toggle="modal"
-                data-target="#exampleModal"
-              >
-                <i className="las la-search icon-search" />
-              </button>
+      <div className="header-bottom">
+        <div className="container">
+          <nav className="navbar navbar-expand-md navbar-light header-bg ">
+            <button
+              className="navbar-toggler d-lg-none button-home"
+              type="button"
+              data-toggle="collapse"
+              data-target="#collapsibleNavId"
+              aria-controls="collapsibleNavId"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <i className="las la-align-justify button-home"></i>
+            </button>
+            <div className="collapse navbar-collapse" id="collapsibleNavId">
+              <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li className="nav-item  ml-5">
+                  <NavLink className="home-css" to="/">
+                    TRANG CHỦ
+                  </NavLink>
+                </li>
+              </ul>
             </div>
-          </div>
-        </nav>
+            <div>
+              <div className="input-group mb-3 input-search">
+                <input
+                  type="text"
+                  className="form-control input-search"
+                  placeholder="Tìm tên phim ..."
+                  aria-label="Recipient's username"
+                  aria-describedby="button-addon2"
+                  onChange={(event) => {
+                    setKeyword({ keyword: event.target.value });
+                  }}
+                />
+                <button
+                  className="btn btn-outline-primary btn-search"
+                  type="button"
+                  id="button-addon2"
+                  data-toggle="modal"
+                  data-target="#exampleModal"
+                >
+                  <i className="las la-search icon-search" />
+                </button>
+              </div>
+            </div>
+          </nav>
+        </div>
       </div>
       <div
         className="modal fade"

@@ -4,7 +4,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { bookTicketApi, fetchTicketDetailApi } from "../../services/ticket";
 import Seat from "./components/seat/Seat";
 import * as _ from "lodash";
-
+import "./style.scss";
+import Modal from "./modal";
 export default function Booking() {
   const [ticketDetail, setTicketDetail] = useState({});
   const [selectedSeatList, setSelectedSeatList] = useState([]);
@@ -73,16 +74,19 @@ export default function Booking() {
 
   return (
     <div
-      className="py-5"
+      className="py-5 container booking-css"
       style={{
         minHeight: "calc( 100vh - 160px )",
       }}
     >
-      <div className="row">
-        <div className="col-8 mb-5" style={screen}></div>
-        <div className=" col-8">
+      <div className="row ">
+        <div className="col-12 col-xl-8 mb-5" style={screen}></div>
+        <div className=" col-12 col-xl-8 chair">
           {renderSeats()}
           <div style={{ width: "95%" }} className="mx-auto"></div>
+
+          <Modal />
+
           <div className="w-100 mt-4 mx-auto">
             <div
               style={{
@@ -108,32 +112,38 @@ export default function Booking() {
             </div>
           </div>
         </div>
-        <div className="col-4">
-          <img
-            style={{ width: 300, height: 400, objectFit: "cover" }}
-            src={ticketDetail?.thongTinPhim?.hinhAnh}
-            alt="#"
-          />
-          <h4 className="mb-0">{ticketDetail?.thongTinPhim?.tenPhim}</h4>
-          <h5 className="mb-0">
-            Number of seats:
-            <div className="d-flex">
-              {selectedSeatList?.map((ele) => {
-                return (
-                  <p key={ele.maGhe} className="badge badge-success mr-2 mb-0">
-                    {ele.tenGhe}
-                  </p>
-                );
-              })}
-            </div>
-          </h5>
-          <h5>
-            Total: {_.sumBy(selectedSeatList, "giaVe").toLocaleString()} VND
-          </h5>
 
-          <button onClick={bookTicket} className="btn btn-warning">
-            BOOK
-          </button>
+        <div className="col-12 col-xl-4 ">
+          <div className="booking-detail">
+            <img
+              style={{ width: 300, height: 400, objectFit: "cover" }}
+              src={ticketDetail?.thongTinPhim?.hinhAnh}
+              alt="#"
+            />
+            <h4 className="mb-0">{ticketDetail?.thongTinPhim?.tenPhim}</h4>
+            <h5 className="mb-0">
+              Number of seats:
+              <div className="d-flex">
+                {selectedSeatList?.map((ele) => {
+                  return (
+                    <p
+                      key={ele.maGhe}
+                      className="badge badge-success mr-2 mb-0"
+                    >
+                      {ele.tenGhe}
+                    </p>
+                  );
+                })}
+              </div>
+            </h5>
+            <h5>
+              Total: {_.sumBy(selectedSeatList, "giaVe").toLocaleString()} VND
+            </h5>
+
+            <button onClick={bookTicket} className="btn btn-warning">
+              BOOK
+            </button>
+          </div>
         </div>
       </div>
     </div>
