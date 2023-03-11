@@ -168,159 +168,175 @@ export default function Register() {
         justifyContent: "center",
       }}
     >
-      <Form
-        {...formItemLayout}
-        form={form}
-        name="register"
-        onFinish={handleFinish}
+      <header
         style={{
-          maxWidth: 800,
-          width: 600,
-          padding: "50px",
+
           backgroundColor: "white",
-          borderRadius: 15,
-          position: "relative",
-        }}
-        scrollToFirstError
-        initialValues={{
-          hoTen: "",
-          taiKhoan: "",
-          matKhau: "",
-          eamil: "",
-          soDt: "",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          borderRadius: "10px",
         }}
       >
-        <NavLink
-          className="btn btn-secondary"
+        <h1 className="py-2">Sign up</h1>
+
+        <Form
+          {...formItemLayout}
+          form={form}
+          name="register"
+          onFinish={handleFinish}
           style={{
-            position: "absolute",
-            zIndex: "2",
-            bottom: "15px",
-            left: "15px",
-            fontSize: "13px",
+            maxWidth: 600,
+            width: "100vw",
+            height: "auto",
+            padding: "50px",
+            position: "relative",
           }}
-          to="/"
-        >
-          Trở về trang chủ
-        </NavLink>
-        <NavLink
-          className="btn btn-primary  "
-          style={{
-            position: "absolute",
-            zIndex: "2",
-            bottom: "15px",
-            right: "15px",
-            fontSize: "13px",
+          scrollToFirstError
+          initialValues={{
+            hoTen: "",
+            taiKhoan: "",
+            matKhau: "",
+            eamil: "",
+            soDt: "",
           }}
-          to="/login"
         >
-          Login
-        </NavLink>
-
-        <Form.Item
-          className="text-light"
-          name="hoTen"
-          label="Họ & tên"
-          rules={[
-            {
-              required: true,
-              message: "Please input your username!",
-              whitespace: true,
-            },
-            {
-              max: 100,
-              message: "Please enter full name 100 characters!",
-            },
-          ]}
-        >
-          <Input placeholder="Nhập họ và tên ..." />
-        </Form.Item>
-        <Form.Item
-          className="text-light"
-          onKeyPress={handleKeyPress}
-          name="taiKhoan"
-          label="Tài khoản"
-          rules={[
-            {
-              required: true,
-              message: "Không được để trống !",
-            },
-          ]}
-        >
-          <Input placeholder="Nhập tài khoản ..." />
-        </Form.Item>
-
-        <Form.Item
-          className="text-light"
-          name="matKhau"
-          onKeyPress={handleKeyPress}
-          label="Mật khẩu"
-          rules={[
-            { required: true, message: "Không được để trống !" },
-            {
-              pattern: new RegExp(
-                /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm
-              ),
-              message:
-                "Tối thiểu tám ký tự, ít nhất một chữ cái in hoa, một chữ cái thường, một chữ số.",
-            },
-          ]}
-          hasFeedback
-        >
-          <Input.Password placeholder="Nhập mật khẩu " />
-        </Form.Item>
-
-        <Form.Item
-          className="text-light"
-          name="email"
-          label="E-mail"
-          onKeyPress={handleKeyPress}
-          rules={[
-            { required: true, message: "Không được để trống !" },
-            {
-              pattern: new RegExp(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g),
-              message: " Phải đúng định dạng email abc@exp.com",
-            },
-          ]}
-        >
-          <Input placeholder="Nhập mail ..." />
-        </Form.Item>
-        <Form.Item
-          className="text-light"
-          name="soDt"
-          onKeyPress={handleKeyPress}
-          label="Số điện thoại"
-          rules={[
-            {
-              required: true,
-              message: "Please input your phone number!",
-            },
-            {
-              len: 10,
-              massage: "Please input your phone number in VietNam 10 digits! ",
-            },
-          ]}
-        >
-          <Input
-            placeholder="Nhập số điện thoại ..."
+          <NavLink
+            className="text-danger"
             style={{
-              width: "100%",
+              position: "absolute",
+              zIndex: "2",
+              bottom: "20px",
+              left: "20px",
+              fontSize: "1.2rem",
+              textDecoration: "underline",
             }}
-          />
-        </Form.Item>
+            to="/"
+          >
+            Trang chủ
+          </NavLink>
+          <NavLink
+            className="text-primary"
+            style={{
+              position: "absolute",
+              zIndex: "2",
+              bottom: "20px",
+              right: "20px",
+              fontSize: "1.2rem",
+              textDecoration: "underline",
+            }}
+            to="/login"
+          >
+            Login
+          </NavLink>
 
-        <Form.Item className="text-light" {...tailFormItemLayout}>
-          {params.userId ? (
-            <Button className=" btn-success" htmlType="submit">
-              Update
-            </Button>
-          ) : (
-            <Button className=" btn-warning" htmlType="submit">
-              Register
-            </Button>
-          )}
-        </Form.Item>
-      </Form>
+          <Form.Item
+            className="text-light"
+            name="hoTen"
+            label="Họ & tên"
+            rules={[
+              {
+                required: true,
+                message: "Please input your username!",
+                whitespace: true,
+              },
+              {
+                max: 100,
+                message: "Please enter full name 100 characters!",
+              },
+            ]}
+          >
+            <Input placeholder="Nhập họ và tên ..." />
+          </Form.Item>
+          <Form.Item
+            className="text-light"
+            onKeyPress={handleKeyPress}
+            name="taiKhoan"
+            label="Tài khoản"
+            rules={[
+              {
+                required: true,
+                message: "Không được để trống !",
+              },
+            ]}
+          >
+            <Input placeholder="Nhập tài khoản ..." />
+          </Form.Item>
+
+          <Form.Item
+            className="text-light"
+            name="matKhau"
+            onKeyPress={handleKeyPress}
+            label="Mật khẩu"
+            rules={[
+              { required: true, message: "Không được để trống !" },
+              {
+                pattern: new RegExp(
+                  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm
+                ),
+                message:
+                  "Tối thiểu tám ký tự, ít nhất một chữ cái in hoa, một chữ cái thường, một chữ số.",
+              },
+            ]}
+            hasFeedback
+          >
+            <Input.Password placeholder="Nhập mật khẩu " />
+          </Form.Item>
+
+          <Form.Item
+            className="text-light"
+            name="email"
+            label="E-mail"
+            onKeyPress={handleKeyPress}
+            rules={[
+              { required: true, message: "Không được để trống !" },
+              {
+                pattern: new RegExp(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g),
+                message: " Phải đúng định dạng email abc@exp.com",
+              },
+            ]}
+          >
+            <Input placeholder="Nhập mail ..." />
+          </Form.Item>
+          <Form.Item
+            className="text-light"
+            name="soDt"
+            onKeyPress={handleKeyPress}
+            label="Số điện thoại"
+            rules={[
+              {
+                required: true,
+                message: "Please input your phone number!",
+              },
+              {
+                len: 10,
+                massage:
+                  "Please input your phone number in VietNam 10 digits! ",
+              },
+            ]}
+          >
+            <Input
+              placeholder="Nhập số điện thoại ..."
+              style={{
+                width: "100%",
+              }}
+            />
+          </Form.Item>
+
+          <Form.Item className="text-light" {...tailFormItemLayout}>
+            {params.userId ? (
+              <Button type="primary" htmlType="submit" size="large">
+                Chỉnh sửa
+              </Button>
+            ) : (
+              <Button type="primary" htmlType="submit" size="large">
+                Đăng ký
+              </Button>
+            )}
+          </Form.Item>
+        </Form>
+      </header>
     </div>
   );
 }
