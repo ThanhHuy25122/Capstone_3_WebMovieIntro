@@ -93,38 +93,37 @@ export default function Header() {
                           }
                         </span>
 
+                        <button
+                          className="btn btn-success my-2 my-sm-0 mr-2"
+                          onClick={() => navigate("/admin/movie-management")}
+                        >
+                          Quản lý
+                        </button>
+                      </>
+                    )}
 
-                      <button
-                        className="btn btn-success my-2 my-sm-0 mr-2"
-                        onClick={() => navigate("/admin/movie-management")}
-                      >
-                        Quản lý
-                      </button>
-                    </>
-                  )}
-
-                  <button className="btn btn-danger" onClick={handleLogout}>
-                    Đăng xuất
-                  </button>
-                </>
-              ) : (
-                <>
-                  <button
-                    className="btn btn-warning my-2 my-sm-0 mr-2"
-                    type="summit"
-                    onClick={() => navigate("/register")}
-                  >
-                    Đăng ký
-                  </button>
-                  <button
-                    className="btn btn-primary my-2 my-sm-0"
-                    onClick={() => navigate("/login")}
-                  >
-                    Đăng nhập
-                  </button>
-                </>
-              )}
-
+                    <button className="btn btn-danger" onClick={handleLogout}>
+                      Đăng xuất
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <button
+                      className="btn btn-warning my-2 my-sm-0 mr-2"
+                      type="summit"
+                      onClick={() => navigate("/register")}
+                    >
+                      Đăng ký
+                    </button>
+                    <button
+                      className="btn btn-primary my-2 my-sm-0"
+                      onClick={() => navigate("/login")}
+                    >
+                      Đăng nhập
+                    </button>
+                  </>
+                )}
+              </div>
             </div>
           </nav>
         </div>
