@@ -74,9 +74,12 @@ export default function Header() {
                     MaLoaiNguoiDung.QuanTri ? (
                       <>
                         <span className="mr-3">
-                          Hi,{" "}
+                          Xin chào,
                           {
-                            <NavLink to={`/update-user/${userInfo?.taiKhoan}`}>
+                            <NavLink
+                              className="username"
+                              to={`/update-user/${userInfo?.taiKhoan}`}
+                            >
                               {userInfo?.hoTen}
                             </NavLink>
                           }
@@ -85,7 +88,7 @@ export default function Header() {
                     ) : (
                       <>
                         <span className="mr-3">
-                          Hi,{" "}
+                          Xin chào,{" "}
                           {
                             <NavLink to={`/update-user/${userInfo?.taiKhoan}`}>
                               {userInfo?.hoTen}
@@ -97,13 +100,13 @@ export default function Header() {
                           className="btn btn-success my-2 my-sm-0 mr-2"
                           onClick={() => navigate("/admin/movie-management")}
                         >
-                          Admin
+                          Quản trị
                         </button>
                       </>
                     )}
 
                     <button className="btn btn-danger" onClick={handleLogout}>
-                      Logout
+                      Đăng xuất
                     </button>
                   </>
                 ) : (
@@ -113,13 +116,13 @@ export default function Header() {
                       type="summit"
                       onClick={() => navigate("/register")}
                     >
-                      Register
+                      Đăng kí
                     </button>
                     <button
                       className="btn btn-primary my-2 my-sm-0"
                       onClick={() => navigate("/login")}
                     >
-                      Login
+                      Đăng nhập
                     </button>
                   </>
                 )}

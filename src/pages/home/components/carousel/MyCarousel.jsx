@@ -9,14 +9,15 @@ export default function MyCarousel() {
   const view = useResponsive();
 
   let heightCarousel = "600px";
-
-  if (view.width > 1440) {
+  if (view.width < 992) {
+    heightCarousel = "400px";
+  } else if (view.width > 1440) {
     heightCarousel = "800px";
   }
 
   const contentStyle = {
     width: "100%",
-    height: "600px",
+
     color: "#fff",
     textAlign: "center",
     background: "transparent",

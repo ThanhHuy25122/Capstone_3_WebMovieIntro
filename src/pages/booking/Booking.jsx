@@ -98,16 +98,16 @@ export default function Booking() {
               className="mx-auto"
             >
               <div className="mr-1 mb-1 d-inline-block p-2 rounded text-white bg-secondary">
-                Seats are booked
+                Ghế đã đặt
               </div>
               <div className="mr-1 mb-1 d-inline-block p-2 rounded text-white bg-dark">
-                Seats not booked
+                Ghế chưa đặt
               </div>
               <div className="mr-1 mb-1 d-inline-block p-2 rounded text-white bg-primary">
-                Seats are being booked
+                Ghế đang đặt
               </div>
               <div className="mr-1 mb-1 d-inline-block p-2 rounded text-white bg-warning">
-                VIP seats
+                Ghế VIP
               </div>
             </div>
           </div>
@@ -123,7 +123,7 @@ export default function Booking() {
             <h4 className="mb-0">{ticketDetail?.thongTinPhim?.tenPhim}</h4>
             <h5 className="mb-0">
               Number of seats:
-              <div className="d-flex">
+              <div>
                 {selectedSeatList?.map((ele) => {
                   return (
                     <p
@@ -141,7 +141,7 @@ export default function Booking() {
             </h5>
 
             <button onClick={bookTicket} className="btn btn-warning">
-              BOOK
+              MUA VÉ
             </button>
           </div>
         </div>
