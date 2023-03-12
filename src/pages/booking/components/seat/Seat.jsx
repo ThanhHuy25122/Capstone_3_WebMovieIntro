@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { LoaiGhe } from "../../../../enums";
-import { useResponsive } from "../../../../hooks/useResposive";
 
 export default function Seat(props) {
-  const view = useResponsive();
   const [isSelected, setIsSelected] = useState(false);
 
   const populateClassName = () => {
@@ -20,7 +18,7 @@ export default function Seat(props) {
     }
     return "btn-dark";
   };
-  
+
   const handleSelectSeat = () => {
     setIsSelected(!isSelected);
     props.handleSelect(props.ele);

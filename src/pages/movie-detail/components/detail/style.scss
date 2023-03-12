@@ -4,26 +4,31 @@
   align-items: center;
 }
 .img-detail {
-  border-right: 1px solid #ffffff9e;
   img {
     width: 100%;
   }
 }
+
+@media only screen and (min-width: 992px) {
+  .img-detail {
+    border-right: 1px solid #ffffff9e;
+  }
+}
+
 @media only screen and (max-width: 576px) {
   .detail-css {
-    padding: 0 6px !important;
+    padding: 0 6px;
   }
 
   .img-detail {
-    border-right: none !important;
-    width: 50% !important;
+    width: 50%;
     img {
-      width: 50% !important;
+      width: 50%;
     }
   }
   .name-detail {
     .trailer {
-      height: 200px !important;
+      height: 200px;
     }
   }
 }
@@ -33,7 +38,7 @@
       font-size: 24px;
     }
     .trailer {
-      height: 100px !important;
+      height: 100px;
     }
   }
 }

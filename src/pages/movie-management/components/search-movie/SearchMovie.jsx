@@ -8,7 +8,6 @@ export default function SearchMovie({ setKeyword }) {
       Modal.info({ title: "Please enter a search term" });
       return;
     }
-    console.log(encodeURIComponent(value));
 
     await setKeyword(!value ? "" : encodeURIComponent(value));
   };

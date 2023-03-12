@@ -17,7 +17,6 @@ export default function MyCarousel() {
 
   const contentStyle = {
     width: "100%",
-
     color: "#fff",
     textAlign: "center",
     background: "transparent",

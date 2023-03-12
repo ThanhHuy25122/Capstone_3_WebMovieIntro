@@ -13,7 +13,6 @@ export default function Showtimes() {
 
   const fetchMovieShowtimes = async () => {
     const result = await fetchMovieShowtimesApi(params.movieId);
-    console.log(result.data.content);
     setMovieShowtimes(result.data.content);
   };
 

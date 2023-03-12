@@ -18,22 +18,34 @@ export default function Detail() {
   };
 
   return (
-    <div className="detail-css col-12">
+    <div className="col-12">
       <div className="col-12 ">
-        <div className="row">
-          <div className="col-12 col-sm-3 img-detail">
-            <img
+        <div className="row ">
+          <div className="col-12 col-sm-9 col-lg-4 img-detail">
+            <div
+              className="card movie-card"
               style={{
-                border: "1px solid white",
-                borderRadius: "0.3rem",
-                // maxHeight: 400,
+                marginBottom: 20,
+                height: 500,
+                overflow: "hidden",
               }}
-              src={movieDetail.hinhAnh}
-              alt=""
-            />
+            >
+              <img
+                style={{
+                  objectFit: "cover",
+                  minHeight: 500 - 2,
+                  minWidth: "100%",
+                  position: "relative",
+                  borderRadius: "0.25rem",
+                }}
+                className="card-img-top"
+                src={movieDetail.hinhAnh}
+                alt="movie"
+              />
+            </div>
           </div>
           <div
-            className="col-12 col-sm-9 name-detail"
+            className="col-12 col-sm-9 col-lg-8 name-detail"
             style={{
               color: "white",
             }}

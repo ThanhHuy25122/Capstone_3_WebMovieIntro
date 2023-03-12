@@ -177,7 +177,14 @@ export default function Register() {
           borderRadius: "10px",
         }}
       >
-        <h1 className="py-2">Sign up</h1>
+        <h1
+          className="py-2"
+          style={{
+            display: params.userId ? "none" : undefined,
+          }}
+        >
+          Sign up
+        </h1>
 
         <Form
           {...formItemLayout}
@@ -203,6 +210,7 @@ export default function Register() {
           <NavLink
             className="text-danger"
             style={{
+              display: params.userId ? "none" : undefined,
               position: "absolute",
               zIndex: "2",
               bottom: "20px",
@@ -217,6 +225,7 @@ export default function Register() {
           <NavLink
             className="text-primary"
             style={{
+              display: params.userId ? "none" : undefined,
               position: "absolute",
               zIndex: "2",
               bottom: "20px",
