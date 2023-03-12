@@ -5,6 +5,8 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { loginApi } from "../../services/login";
 import { setUserInfoAction } from "../../store/actions/userAction";
 
+import "./style.scss";
+
 export default function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -13,11 +15,6 @@ export default function Login() {
     taiKhoan: "",
     matKhau: "",
   });
-
-  const labelLogin = {
-    fontSize: "1.5rem",
-    margin: "1rem auto",
-  };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -56,74 +53,62 @@ export default function Login() {
     >
       <header
         style={{
-          height: "calc(50vw - 15vh)",
-          width: "50vw",
+          padding: "16px 0",
           display: "flex",
+          flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          backgroundColor: "rgba(255, 255, 255,0.2",
+          backgroundColor: "white",
           borderRadius: "10px",
-          position: "relative",
+          position: "absolute",
+          width: "100vw",
+          maxWidth: 500,
+          zIndex: 2,
         }}
       >
-        <NavLink
-          className="btn btn-secondary"
+        <h1
+          className="text-dark"
           style={{
-            position: "absolute",
-            zIndex: "2",
-            top: "15px",
-            left: "15px",
-            fontSize: "13px",
+            fontSize: "2rem",
+            fontWeight: "bold",
+            padding: "12px 0",
+            textTransform: "uppercase",
           }}
-          to="/"
         >
-          Trở về trang chủ
-        </NavLink>
-        <NavLink
-          className="btn btn-warning"
-          style={{
-            position: "absolute",
-            zIndex: "2",
-            top: "15px",
-            right: "15px",
-            fontSize: "13px",
-          }}
-          to="/register"
-        >
-          Đăng ký
-        </NavLink>
+          Đăng nhập
+        </h1>
         <div
-          className="w-50 py-5"
+          className="w-75"
           style={{
             color: "white",
           }}
         >
-          <form onSubmit={handleSubmit}>
-            <div className="form-group">
-              <label style={labelLogin} htmlFor="">
-                Tài khoản
-              </label>
+          <form onSubmit={handleSubmit} method="post">
+            <div className="txt_field">
               <input
                 onChange={handleChange}
-                type="text"
                 name="taiKhoan"
-                className="form-control border-secondary"
-                placeholder="Nhập tài khoản ..."
+                type="text"
+                required
               />
+              <span />
+              <label>Tài khoản</label>
             </div>
-            <div className="form-group">
-              <label style={labelLogin} htmlFor="">
-                Mật khẩu
-              </label>
+            <div className="txt_field">
               <input
                 onChange={handleChange}
-                type="password"
                 name="matKhau"
-                className="form-control border-secondary"
-                placeholder="Nhập mật khẩu ..."
+                type="password"
+                required
               />
+              <span />
+              <label>Mật khẩu</label>
             </div>
-            <button className="btn btn-primary">LOGIN</button>
+            <input type="submit" value="Đăng nhập" />
+            <div className="signup_link">
+              <NavLink to="/">Trang chủ</NavLink> ! Bạn không phải là thành
+              viên? <NavLink to="/register">Đăng ký</NavLink>
+            </div>
           </form>
         </div>
       </header>
