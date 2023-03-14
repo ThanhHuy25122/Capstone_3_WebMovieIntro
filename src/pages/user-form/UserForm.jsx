@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { createUserApi, fetchUserApi } from "services/user";
 import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "antd/es/form/Form";
+import { updateUserApi } from "services/register";
 
 export default function UserForm() {
   const [form] = useForm();
@@ -79,11 +80,19 @@ export default function UserForm() {
     });
 
     try {
-      createUserApi(userState);
-      notification.success({
-        message: "Thêm tài khoản thành công !",
-      });
-      navigate("/admin/user-management");
+      if (params.userId) {
+        updateUserApi(userState);
+        notification.success({
+          message: "Cập nhật tài khoản thành công !",
+        });
+        navigate("/admin/user-management");
+      } else {
+        createUserApi(userState);
+        notification.success({
+          message: "Thêm tài khoản thành công !",
+        });
+        navigate("/admin/user-management");
+      }
     } catch ({ response }) {
       notification.error({
         message: response.data.content || "Không thể thêm được tài khoản !",

@@ -78,7 +78,7 @@ export default function ShowtimeManagement() {
       fetchCinemaLocationList(data.content[0].maHeThongRap);
     } catch ({ response }) {
       notification.error({
-        message: response?.data?.content || "Something went wrong",
+        message: response?.data?.content || "Có một số lỗi tồn tại",
       });
     }
   };
@@ -132,7 +132,7 @@ export default function ShowtimeManagement() {
     try {
       await addMovieShowtimeApi(data);
       notification.success({
-        message: "Successfully created movie showtime !",
+        message: "Thêm lịch chiếu thành công !",
       });
       navigate("/admin/movie-management");
     } catch ({ response }) {
@@ -144,9 +144,9 @@ export default function ShowtimeManagement() {
 
   const handleConfirmCreate = (data) => {
     Modal.confirm({
-      title: "Do you want to create a showtime for this movie?",
-      okText: "Create",
-      cancelText: "Cancel",
+      title: "Bạn có muốn thêm lịch chiếu cho phim?",
+      okText: "Thêm",
+      cancelText: "Quay lại",
       onOk: () => {
         handleFinish(data);
       },
